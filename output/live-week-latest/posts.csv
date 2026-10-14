@@ -1,0 +1,22 @@
+Post Text,Image
+"Reentrancy lets an attacker slip back into a contract before its state finishes updating.
+
+An external call transfers control to the called contract, which may call back into the original function.
+
+Reentrancy is not limited to Ether transfers; any call to another contract can create a re-entry path.
+
+Mitigate by updating state before external calls and, if needed, adding a reentrancy guard; also examine cross-function paths.
+
+Can you verify that every external interaction in your code follows the checks-effects-interactions order?",visuals/thread_1.json
+"Missing access control lets an unintended account call privileged functions.
+
+Permissions are missing or applied inconsistently across privileged entry points, creating the gap.
+
+Different privileged operations can require different roles.
+
+Mitigate by defining roles explicitly and testing unauthorized calls for every privileged operation.
+
+How will you verify that role assignment and removal, which are permission-sensitive operations, are correctly restricted?",visuals/thread_3.json
+"If your contract trusts a price feed without resistance, a low-liquidity pool can be manipulated and stale data may be used. Have you verified feed liquidity and timestamps? DM to discuss a security review.",visuals/marketing_1.json
+Using tx.origin for auth lets a malicious intermediary contract trick a victim into authorizing actions. Have you checked caller-based checks on all call paths? DM to discuss a security review.,visuals/marketing_2.json
+"Can a loop over growing on-chain data exceed the gas limit? Unbounded iteration can grow work without bound, eventually stalling the contract. DM to discuss a security review.",visuals/marketing_3.json

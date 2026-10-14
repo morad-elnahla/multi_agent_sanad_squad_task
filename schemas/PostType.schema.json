@@ -1,0 +1,38 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "min_posts": {
+      "minimum": 1,
+      "title": "Min Posts",
+      "type": "integer"
+    },
+    "max_posts": {
+      "minimum": 1,
+      "title": "Max Posts",
+      "type": "integer"
+    },
+    "max_characters": {
+      "maximum": 280,
+      "minimum": 1,
+      "title": "Max Characters",
+      "type": "integer"
+    },
+    "writer": {
+      "title": "Writer",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "min_posts",
+    "max_posts",
+    "max_characters",
+    "writer"
+  ],
+  "title": "PostType",
+  "type": "object"
+}

@@ -1,0 +1,504 @@
+{
+  "schema_version": "1.1",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "thread_2",
+      "type": "tech-thread",
+      "focus": ""
+    },
+    "candidates": [
+      {
+        "id": "unchecked-return",
+        "name": "Unchecked external call result",
+        "severity": "Medium",
+        "category": "External calls",
+        "description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+        "root_cause": "The caller does not check the success flag returned by a low-level call.",
+        "mitigation": "Check call outcomes and define explicit failure handling.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+        "facts": [
+          {
+            "id": "mechanism",
+            "text": "Low-level calls expose a success flag that the caller can inspect.",
+            "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+          },
+          {
+            "id": "consequence",
+            "text": "If failure is ignored, subsequent logic may rely on an operation that did not complete.",
+            "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+          },
+          {
+            "id": "review",
+            "text": "The failure path needs explicit handling, not only a check of the successful path.",
+            "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+          }
+        ]
+      }
+    ],
+    "topic": "Unchecked external call result",
+    "research": {
+      "kb_id": "unchecked-return",
+      "source": "kb:unchecked-return",
+      "background_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "The candidate directly matches the provided security issue about ignoring low‑level call results, making it the only relevant knowledge base entry.",
+      "evidence": {
+        "kb:unchecked-return:name": "Unchecked external call result",
+        "kb:unchecked-return:description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+        "kb:unchecked-return:root_cause": "The caller does not check the success flag returned by a low-level call.",
+        "kb:unchecked-return:mitigation": "Check call outcomes and define explicit failure handling.",
+        "kb:unchecked-return:fact:mechanism": "Low-level calls expose a success flag that the caller can inspect.",
+        "kb:unchecked-return:fact:consequence": "If failure is ignored, subsequent logic may rely on an operation that did not complete.",
+        "kb:unchecked-return:fact:review": "The failure path needs explicit handling, not only a check of the successful path."
+      },
+      "provenance": {
+        "kb:unchecked-return:name": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "kb:unchecked-return:description": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "kb:unchecked-return:root_cause": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "kb:unchecked-return:mitigation": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "kb:unchecked-return:fact:mechanism": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "kb:unchecked-return:fact:consequence": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "kb:unchecked-return:fact:review": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+      }
+    },
+    "evidence": {
+      "kb:unchecked-return:name": "Unchecked external call result",
+      "kb:unchecked-return:description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+      "kb:unchecked-return:root_cause": "The caller does not check the success flag returned by a low-level call.",
+      "kb:unchecked-return:mitigation": "Check call outcomes and define explicit failure handling.",
+      "kb:unchecked-return:fact:mechanism": "Low-level calls expose a success flag that the caller can inspect.",
+      "kb:unchecked-return:fact:consequence": "If failure is ignored, subsequent logic may rely on an operation that did not complete.",
+      "kb:unchecked-return:fact:review": "The failure path needs explicit handling, not only a check of the successful path."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "Unchecked external call result can silently fail a contract, letting it continue as if the operation succeeded, exposing hidden risk.",
+          "evidence_ids": [
+            "kb:unchecked-return:name",
+            "kb:unchecked-return:description"
+          ]
+        },
+        {
+          "text": "Low‑level calls return a boolean success flag that the caller can inspect, providing a way to detect failures.",
+          "evidence_ids": [
+            "kb:unchecked-return:fact:mechanism"
+          ]
+        },
+        {
+          "text": "The root cause is that the caller does not check the success flag returned by a low‑level call.",
+          "evidence_ids": [
+            "kb:unchecked-return:root_cause"
+          ]
+        },
+        {
+          "text": "If the failure flag is ignored, subsequent logic may depend on an operation that never completed, corrupting state.",
+          "evidence_ids": [
+            "kb:unchecked-return:fact:consequence"
+          ]
+        },
+        {
+          "text": "Mitigation: check call outcomes and define explicit failure handling. Review: does the failure path have explicit handling beyond the success branch?",
+          "evidence_ids": [
+            "kb:unchecked-return:mitigation",
+            "kb:unchecked-return:fact:review"
+          ]
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "Unchecked external call result can silently fail a contract, letting it continue as if the operation succeeded.",
+              "evidence_ids": [
+                "kb:unchecked-return:name",
+                "kb:unchecked-return:description"
+              ]
+            },
+            {
+              "text": "Low-level calls return a boolean success flag that the caller can inspect.",
+              "evidence_ids": [
+                "kb:unchecked-return:fact:mechanism"
+              ]
+            },
+            {
+              "text": "The root cause is that the caller does not check the success flag returned by a low-level call.",
+              "evidence_ids": [
+                "kb:unchecked-return:root_cause"
+              ]
+            },
+            {
+              "text": "If a failure is ignored, later logic may depend on an operation that never completed.",
+              "evidence_ids": [
+                "kb:unchecked-return:fact:consequence"
+              ]
+            },
+            {
+              "text": "Mitigation: always check call outcomes and define explicit failure handling. Review: does the failure path have explicit handling?",
+              "evidence_ids": [
+                "kb:unchecked-return:mitigation",
+                "kb:unchecked-return:fact:review"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "attempt": 2,
+        "draft": {
+          "posts": [
+            {
+              "text": "Unchecked external call result can silently fail a contract, letting it continue as if the operation succeeded, exposing hidden risk.",
+              "evidence_ids": [
+                "kb:unchecked-return:name",
+                "kb:unchecked-return:description"
+              ]
+            },
+            {
+              "text": "Low‑level calls return a boolean success flag that the caller can inspect, providing a way to detect failures.",
+              "evidence_ids": [
+                "kb:unchecked-return:fact:mechanism"
+              ]
+            },
+            {
+              "text": "The root cause is that the caller does not check the success flag returned by a low‑level call.",
+              "evidence_ids": [
+                "kb:unchecked-return:root_cause"
+              ]
+            },
+            {
+              "text": "If the failure flag is ignored, subsequent logic may depend on an operation that never completed, corrupting state.",
+              "evidence_ids": [
+                "kb:unchecked-return:fact:consequence"
+              ]
+            },
+            {
+              "text": "Mitigation: check call outcomes and define explicit failure handling. Review: does the failure path have explicit handling beyond the success branch?",
+              "evidence_ids": [
+                "kb:unchecked-return:mitigation",
+                "kb:unchecked-return:fact:review"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": false,
+        "scores": {
+          "accuracy": 2,
+          "usefulness": 3,
+          "clarity": 4,
+          "brand_fit": 2
+        },
+        "total": 11,
+        "reasons": [
+          "p5s1: The claim adds the word 'always', which is not present in the source and violates brand claim‑marker policy.",
+          "Unsupported absolute claim in mitigation (p5s1) violates grounding and brand rules.",
+          "Total score 11 is below required minimum of 16.",
+          "Brand fit reduced due to prohibited claim marker 'always'.",
+          "Post 5: Mitigation sentence contains unsupported absolute 'always' and breaches brand claim markers."
+        ],
+        "hard_errors": [
+          "p5s1: The claim adds the word 'always', which is not present in the source and violates brand claim‑marker policy."
+        ],
+        "judgment": {
+          "approve": false,
+          "scores": {
+            "accuracy": 2,
+            "usefulness": 3,
+            "clarity": 4,
+            "brand_fit": 2
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:description",
+                  "quote": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded."
+                }
+              ],
+              "reason": "The claim matches the description of the failure mode."
+            },
+            {
+              "unit_id": "p2s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:fact:mechanism",
+                  "quote": "Low-level calls expose a success flag that the caller can inspect."
+                }
+              ],
+              "reason": "Exact wording from evidence supports the statement."
+            },
+            {
+              "unit_id": "p3s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:root_cause",
+                  "quote": "The caller does not check the success flag returned by a low-level call."
+                }
+              ],
+              "reason": "Direct match with root‑cause evidence."
+            },
+            {
+              "unit_id": "p4s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:fact:consequence",
+                  "quote": "If failure is ignored, subsequent logic may rely on an operation that did not complete."
+                }
+              ],
+              "reason": "Paraphrase of the consequence evidence; meaning preserved."
+            },
+            {
+              "unit_id": "p5s1",
+              "kind": "factual",
+              "supported": false,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:mitigation",
+                  "quote": "Check call outcomes and define explicit failure handling."
+                }
+              ],
+              "reason": "The claim adds the word 'always', which is not present in the source and violates brand claim‑marker policy."
+            },
+            {
+              "unit_id": "p5s2",
+              "kind": "question",
+              "supported": true,
+              "citations": [],
+              "reason": "Question does not require evidence."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "All statements in post are backed by evidence."
+            },
+            {
+              "post_index": 1,
+              "supported": true,
+              "reason": "Statement is fully supported by mechanism evidence."
+            },
+            {
+              "post_index": 2,
+              "supported": true,
+              "reason": "Root‑cause description matches evidence."
+            },
+            {
+              "post_index": 3,
+              "supported": true,
+              "reason": "Consequence statement aligns with evidence."
+            },
+            {
+              "post_index": 4,
+              "supported": false,
+              "reason": "Mitigation sentence contains unsupported absolute 'always' and breaches brand claim markers."
+            }
+          ],
+          "reasons": [
+            "Unsupported absolute claim in mitigation (p5s1) violates grounding and brand rules.",
+            "Total score 11 is below required minimum of 16.",
+            "Brand fit reduced due to prohibited claim marker 'always'."
+          ]
+        },
+        "scope_warnings": [
+          {
+            "unit_id": "p4s1",
+            "marker": "never",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          },
+          {
+            "unit_id": "p5s1",
+            "marker": "always",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          }
+        ],
+        "attempt": 1
+      },
+      {
+        "accepted": false,
+        "scores": {
+          "accuracy": 3,
+          "usefulness": 4,
+          "clarity": 4,
+          "brand_fit": 5
+        },
+        "total": 16,
+        "reasons": [
+          "Post 2: non-ASCII text is outside supported X policy",
+          "Post 3: non-ASCII text is outside supported X policy",
+          "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported.",
+          "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+          "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+          "Post 4 includes an unsupported claim about state corruption not supported by evidence.",
+          "Post 2: Contains non-ASCII hyphen character violating ASCII-only policy.",
+          "Post 3: Contains non-ASCII hyphen character violating ASCII-only policy.",
+          "Post 4: Includes an unsupported claim about state corruption not backed by evidence."
+        ],
+        "hard_errors": [
+          "Post 2: non-ASCII text is outside supported X policy",
+          "Post 3: non-ASCII text is outside supported X policy",
+          "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported."
+        ],
+        "judgment": {
+          "approve": false,
+          "scores": {
+            "accuracy": 3,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 5
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:name",
+                  "quote": "Unchecked external call result"
+                },
+                {
+                  "evidence_id": "kb:unchecked-return:description",
+                  "quote": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded."
+                }
+              ],
+              "reason": "Statement is directly supported by the name and description evidence."
+            },
+            {
+              "unit_id": "p2s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:fact:mechanism",
+                  "quote": "Low-level calls expose a success flag that the caller can inspect."
+                }
+              ],
+              "reason": "Mechanism description matches evidence."
+            },
+            {
+              "unit_id": "p3s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:root_cause",
+                  "quote": "The caller does not check the success flag returned by a low-level call."
+                }
+              ],
+              "reason": "Root cause matches evidence."
+            },
+            {
+              "unit_id": "p4s1",
+              "kind": "factual",
+              "supported": false,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:fact:consequence",
+                  "quote": "If failure is ignored, subsequent logic may rely on an operation that did not complete."
+                }
+              ],
+              "reason": "Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported."
+            },
+            {
+              "unit_id": "p5s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:mitigation",
+                  "quote": "Check call outcomes and define explicit failure handling."
+                }
+              ],
+              "reason": "Mitigation matches evidence."
+            },
+            {
+              "unit_id": "p5s2",
+              "kind": "question",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unchecked-return:fact:review",
+                  "quote": "The failure path needs explicit handling, not only a check of the successful path."
+                }
+              ],
+              "reason": "Question aligns with evidence indicating need for explicit handling."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "All statements supported and ASCII compliant."
+            },
+            {
+              "post_index": 1,
+              "supported": false,
+              "reason": "Contains non-ASCII hyphen character violating ASCII-only policy."
+            },
+            {
+              "post_index": 2,
+              "supported": false,
+              "reason": "Contains non-ASCII hyphen character violating ASCII-only policy."
+            },
+            {
+              "post_index": 3,
+              "supported": false,
+              "reason": "Includes an unsupported claim about state corruption not backed by evidence."
+            },
+            {
+              "post_index": 4,
+              "supported": true,
+              "reason": "All statements supported and ASCII compliant."
+            }
+          ],
+          "reasons": [
+            "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+            "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+            "Post 4 includes an unsupported claim about state corruption not supported by evidence."
+          ]
+        },
+        "scope_warnings": [
+          {
+            "unit_id": "p4s1",
+            "marker": "never",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          }
+        ],
+        "attempt": 2
+      }
+    ],
+    "attempt": 2,
+    "accepted": false,
+    "status": "dropped",
+    "reasons": [
+      "Post 2: non-ASCII text is outside supported X policy",
+      "Post 3: non-ASCII text is outside supported X policy",
+      "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported.",
+      "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+      "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+      "Post 4 includes an unsupported claim about state corruption not supported by evidence.",
+      "Post 2: Contains non-ASCII hyphen character violating ASCII-only policy.",
+      "Post 3: Contains non-ASCII hyphen character violating ASCII-only policy.",
+      "Post 4: Includes an unsupported claim about state corruption not backed by evidence."
+    ]
+  }
+}

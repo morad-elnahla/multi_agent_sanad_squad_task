@@ -1,0 +1,987 @@
+{
+  "schema_version": "1.1",
+  "kind": "review_report",
+  "data": [
+    {
+      "slot_id": "thread_1",
+      "status": "shipped",
+      "reviews": [
+        {
+          "accepted": true,
+          "scores": {
+            "accuracy": 4,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "total": 16,
+          "reasons": [],
+          "hard_errors": [],
+          "judgment": {
+            "approve": true,
+            "scores": {
+              "accuracy": 4,
+              "usefulness": 4,
+              "clarity": 4,
+              "brand_fit": 4
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:reentrancy:description",
+                    "quote": "An external call can let another contract re-enter before the caller has finished updating its state."
+                  }
+                ],
+                "reason": "The statement matches the description of re‑entrancy."
+              },
+              {
+                "unit_id": "p2s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:reentrancy:fact:mechanism",
+                    "quote": "A contract interaction transfers control to the called contract, which may call back."
+                  }
+                ],
+                "reason": "The mechanism description directly supports the claim."
+              },
+              {
+                "unit_id": "p3s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:reentrancy:fact:scope",
+                    "quote": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths."
+                  }
+                ],
+                "reason": "Scope statement is verbatim from the source."
+              },
+              {
+                "unit_id": "p3s2",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:reentrancy:fact:scope",
+                    "quote": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths."
+                  }
+                ],
+                "reason": "The claim mirrors the source wording."
+              },
+              {
+                "unit_id": "p4s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:reentrancy:mitigation",
+                    "quote": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too."
+                  }
+                ],
+                "reason": "Mitigation advice is directly taken from the source."
+              },
+              {
+                "unit_id": "p4s2",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:reentrancy:mitigation",
+                    "quote": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too."
+                  }
+                ],
+                "reason": "Cross‑function path suggestion matches the source."
+              },
+              {
+                "unit_id": "p5s1",
+                "kind": "question",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:reentrancy:fact:pattern",
+                    "quote": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions."
+                  }
+                ],
+                "reason": "The question asks to apply a pattern that the source defines."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": true,
+                "reason": "All statements in post 1 are backed by evidence."
+              },
+              {
+                "post_index": 1,
+                "supported": true,
+                "reason": "Post 2 content is fully supported."
+              },
+              {
+                "post_index": 2,
+                "supported": true,
+                "reason": "Both sentences in post 3 are supported by the scope source."
+              },
+              {
+                "post_index": 3,
+                "supported": true,
+                "reason": "Mitigation guidance in post 4 matches the mitigation source."
+              },
+              {
+                "post_index": 4,
+                "supported": true,
+                "reason": "The review question in post 5 aligns with the pattern source."
+              }
+            ],
+            "reasons": [
+              "Meets brand guidelines: calm, precise, short sentences, no banned language."
+            ]
+          },
+          "scope_warnings": [
+            {
+              "unit_id": "p3s2",
+              "marker": "any",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            },
+            {
+              "unit_id": "p5s1",
+              "marker": "every",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            }
+          ],
+          "attempt": 1
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "thread_2",
+      "status": "dropped",
+      "reviews": [
+        {
+          "accepted": false,
+          "scores": {
+            "accuracy": 2,
+            "usefulness": 3,
+            "clarity": 4,
+            "brand_fit": 2
+          },
+          "total": 11,
+          "reasons": [
+            "p5s1: The claim adds the word 'always', which is not present in the source and violates brand claim‑marker policy.",
+            "Unsupported absolute claim in mitigation (p5s1) violates grounding and brand rules.",
+            "Total score 11 is below required minimum of 16.",
+            "Brand fit reduced due to prohibited claim marker 'always'.",
+            "Post 5: Mitigation sentence contains unsupported absolute 'always' and breaches brand claim markers."
+          ],
+          "hard_errors": [
+            "p5s1: The claim adds the word 'always', which is not present in the source and violates brand claim‑marker policy."
+          ],
+          "judgment": {
+            "approve": false,
+            "scores": {
+              "accuracy": 2,
+              "usefulness": 3,
+              "clarity": 4,
+              "brand_fit": 2
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:description",
+                    "quote": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded."
+                  }
+                ],
+                "reason": "The claim matches the description of the failure mode."
+              },
+              {
+                "unit_id": "p2s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:fact:mechanism",
+                    "quote": "Low-level calls expose a success flag that the caller can inspect."
+                  }
+                ],
+                "reason": "Exact wording from evidence supports the statement."
+              },
+              {
+                "unit_id": "p3s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:root_cause",
+                    "quote": "The caller does not check the success flag returned by a low-level call."
+                  }
+                ],
+                "reason": "Direct match with root‑cause evidence."
+              },
+              {
+                "unit_id": "p4s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:fact:consequence",
+                    "quote": "If failure is ignored, subsequent logic may rely on an operation that did not complete."
+                  }
+                ],
+                "reason": "Paraphrase of the consequence evidence; meaning preserved."
+              },
+              {
+                "unit_id": "p5s1",
+                "kind": "factual",
+                "supported": false,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:mitigation",
+                    "quote": "Check call outcomes and define explicit failure handling."
+                  }
+                ],
+                "reason": "The claim adds the word 'always', which is not present in the source and violates brand claim‑marker policy."
+              },
+              {
+                "unit_id": "p5s2",
+                "kind": "question",
+                "supported": true,
+                "citations": [],
+                "reason": "Question does not require evidence."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": true,
+                "reason": "All statements in post are backed by evidence."
+              },
+              {
+                "post_index": 1,
+                "supported": true,
+                "reason": "Statement is fully supported by mechanism evidence."
+              },
+              {
+                "post_index": 2,
+                "supported": true,
+                "reason": "Root‑cause description matches evidence."
+              },
+              {
+                "post_index": 3,
+                "supported": true,
+                "reason": "Consequence statement aligns with evidence."
+              },
+              {
+                "post_index": 4,
+                "supported": false,
+                "reason": "Mitigation sentence contains unsupported absolute 'always' and breaches brand claim markers."
+              }
+            ],
+            "reasons": [
+              "Unsupported absolute claim in mitigation (p5s1) violates grounding and brand rules.",
+              "Total score 11 is below required minimum of 16.",
+              "Brand fit reduced due to prohibited claim marker 'always'."
+            ]
+          },
+          "scope_warnings": [
+            {
+              "unit_id": "p4s1",
+              "marker": "never",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            },
+            {
+              "unit_id": "p5s1",
+              "marker": "always",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            }
+          ],
+          "attempt": 1
+        },
+        {
+          "accepted": false,
+          "scores": {
+            "accuracy": 3,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 5
+          },
+          "total": 16,
+          "reasons": [
+            "Post 2: non-ASCII text is outside supported X policy",
+            "Post 3: non-ASCII text is outside supported X policy",
+            "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported.",
+            "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+            "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+            "Post 4 includes an unsupported claim about state corruption not supported by evidence.",
+            "Post 2: Contains non-ASCII hyphen character violating ASCII-only policy.",
+            "Post 3: Contains non-ASCII hyphen character violating ASCII-only policy.",
+            "Post 4: Includes an unsupported claim about state corruption not backed by evidence."
+          ],
+          "hard_errors": [
+            "Post 2: non-ASCII text is outside supported X policy",
+            "Post 3: non-ASCII text is outside supported X policy",
+            "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported."
+          ],
+          "judgment": {
+            "approve": false,
+            "scores": {
+              "accuracy": 3,
+              "usefulness": 4,
+              "clarity": 4,
+              "brand_fit": 5
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:name",
+                    "quote": "Unchecked external call result"
+                  },
+                  {
+                    "evidence_id": "kb:unchecked-return:description",
+                    "quote": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded."
+                  }
+                ],
+                "reason": "Statement is directly supported by the name and description evidence."
+              },
+              {
+                "unit_id": "p2s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:fact:mechanism",
+                    "quote": "Low-level calls expose a success flag that the caller can inspect."
+                  }
+                ],
+                "reason": "Mechanism description matches evidence."
+              },
+              {
+                "unit_id": "p3s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:root_cause",
+                    "quote": "The caller does not check the success flag returned by a low-level call."
+                  }
+                ],
+                "reason": "Root cause matches evidence."
+              },
+              {
+                "unit_id": "p4s1",
+                "kind": "factual",
+                "supported": false,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:fact:consequence",
+                    "quote": "If failure is ignored, subsequent logic may rely on an operation that did not complete."
+                  }
+                ],
+                "reason": "Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported."
+              },
+              {
+                "unit_id": "p5s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:mitigation",
+                    "quote": "Check call outcomes and define explicit failure handling."
+                  }
+                ],
+                "reason": "Mitigation matches evidence."
+              },
+              {
+                "unit_id": "p5s2",
+                "kind": "question",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unchecked-return:fact:review",
+                    "quote": "The failure path needs explicit handling, not only a check of the successful path."
+                  }
+                ],
+                "reason": "Question aligns with evidence indicating need for explicit handling."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": true,
+                "reason": "All statements supported and ASCII compliant."
+              },
+              {
+                "post_index": 1,
+                "supported": false,
+                "reason": "Contains non-ASCII hyphen character violating ASCII-only policy."
+              },
+              {
+                "post_index": 2,
+                "supported": false,
+                "reason": "Contains non-ASCII hyphen character violating ASCII-only policy."
+              },
+              {
+                "post_index": 3,
+                "supported": false,
+                "reason": "Includes an unsupported claim about state corruption not backed by evidence."
+              },
+              {
+                "post_index": 4,
+                "supported": true,
+                "reason": "All statements supported and ASCII compliant."
+              }
+            ],
+            "reasons": [
+              "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+              "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+              "Post 4 includes an unsupported claim about state corruption not supported by evidence."
+            ]
+          },
+          "scope_warnings": [
+            {
+              "unit_id": "p4s1",
+              "marker": "never",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            }
+          ],
+          "attempt": 2
+        }
+      ],
+      "reasons": [
+        "Post 2: non-ASCII text is outside supported X policy",
+        "Post 3: non-ASCII text is outside supported X policy",
+        "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported.",
+        "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+        "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+        "Post 4 includes an unsupported claim about state corruption not supported by evidence.",
+        "Post 2: Contains non-ASCII hyphen character violating ASCII-only policy.",
+        "Post 3: Contains non-ASCII hyphen character violating ASCII-only policy.",
+        "Post 4: Includes an unsupported claim about state corruption not backed by evidence."
+      ]
+    },
+    {
+      "slot_id": "thread_3",
+      "status": "shipped",
+      "reviews": [
+        {
+          "accepted": false,
+          "scores": {
+            "accuracy": 1,
+            "usefulness": 2,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "total": 11,
+          "reasons": [
+            "p1s1: Overstates impact with 'anyone'; source only mentions an unintended account, not universal access.",
+            "p1s1: Factual claim has no evidence quote",
+            "p2s1: Adds causal clause 'allowing unintended callers to execute critical logic' not present in source.",
+            "p3s1: Inference that a single missing check may expose several functions is not supported by source.",
+            "Multiple factual inaccuracies reduce accuracy to 1.",
+            "Overall score 11 is below required minimum total of 16.",
+            "Therefore the draft cannot be approved.",
+            "Post 1: Contains overstatement 'anyone' not supported by evidence.",
+            "Post 2: Causal claim not directly supported by source.",
+            "Post 3: Inference about exposure not present in source."
+          ],
+          "hard_errors": [
+            "p1s1: Overstates impact with 'anyone'; source only mentions an unintended account, not universal access.",
+            "p1s1: Factual claim has no evidence quote",
+            "p2s1: Adds causal clause 'allowing unintended callers to execute critical logic' not present in source.",
+            "p3s1: Inference that a single missing check may expose several functions is not supported by source."
+          ],
+          "judgment": {
+            "approve": false,
+            "scores": {
+              "accuracy": 1,
+              "usefulness": 2,
+              "clarity": 4,
+              "brand_fit": 4
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "factual",
+                "supported": false,
+                "citations": [],
+                "reason": "Overstates impact with 'anyone'; source only mentions an unintended account, not universal access."
+              },
+              {
+                "unit_id": "p1s2",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:description",
+                    "quote": "A sensitive function without adequate authorization can be called by an unintended account."
+                  }
+                ],
+                "reason": "Exact match to source description."
+              },
+              {
+                "unit_id": "p2s1",
+                "kind": "factual",
+                "supported": false,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:root_cause",
+                    "quote": "Permissions are missing or applied inconsistently across privileged entry points."
+                  }
+                ],
+                "reason": "Adds causal clause 'allowing unintended callers to execute critical logic' not present in source."
+              },
+              {
+                "unit_id": "p3s1",
+                "kind": "factual",
+                "supported": false,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:fact:scope",
+                    "quote": "Different privileged operations can require different roles."
+                  }
+                ],
+                "reason": "Inference that a single missing check may expose several functions is not supported by source."
+              },
+              {
+                "unit_id": "p4s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:mitigation",
+                    "quote": "Define roles explicitly and test unauthorized calls for every privileged operation."
+                  }
+                ],
+                "reason": "Directly matches mitigation guidance."
+              },
+              {
+                "unit_id": "p5s1",
+                "kind": "question",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:fact:lifecycle",
+                    "quote": "Role assignment and removal are themselves permission-sensitive operations."
+                  },
+                  {
+                    "evidence_id": "kb:access-control:fact:review",
+                    "quote": "Access control design includes deciding who may grant and revoke permissions."
+                  }
+                ],
+                "reason": "Question premise aligns with two factual statements from sources."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": false,
+                "reason": "Contains overstatement 'anyone' not supported by evidence."
+              },
+              {
+                "post_index": 1,
+                "supported": false,
+                "reason": "Causal claim not directly supported by source."
+              },
+              {
+                "post_index": 2,
+                "supported": false,
+                "reason": "Inference about exposure not present in source."
+              },
+              {
+                "post_index": 3,
+                "supported": true,
+                "reason": "All statements fully supported."
+              },
+              {
+                "post_index": 4,
+                "supported": true,
+                "reason": "Question premise supported; no factual errors."
+              }
+            ],
+            "reasons": [
+              "Multiple factual inaccuracies reduce accuracy to 1.",
+              "Overall score 11 is below required minimum total of 16.",
+              "Therefore the draft cannot be approved."
+            ]
+          },
+          "scope_warnings": [
+            {
+              "unit_id": "p5s1",
+              "marker": "will",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            }
+          ],
+          "attempt": 1
+        },
+        {
+          "accepted": true,
+          "scores": {
+            "accuracy": 5,
+            "usefulness": 4,
+            "clarity": 5,
+            "brand_fit": 5
+          },
+          "total": 19,
+          "reasons": [],
+          "hard_errors": [],
+          "judgment": {
+            "approve": true,
+            "scores": {
+              "accuracy": 5,
+              "usefulness": 4,
+              "clarity": 5,
+              "brand_fit": 5
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:description",
+                    "quote": "A sensitive function without adequate authorization can be called by an unintended account."
+                  }
+                ],
+                "reason": "Statement aligns with description of missing access control."
+              },
+              {
+                "unit_id": "p2s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:root_cause",
+                    "quote": "Permissions are missing or applied inconsistently across privileged entry points."
+                  }
+                ],
+                "reason": "Root‑cause matches source wording."
+              },
+              {
+                "unit_id": "p3s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:fact:scope",
+                    "quote": "Different privileged operations can require different roles."
+                  }
+                ],
+                "reason": "Scope fact is directly quoted."
+              },
+              {
+                "unit_id": "p4s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:mitigation",
+                    "quote": "Define roles explicitly and test unauthorized calls for every privileged operation."
+                  }
+                ],
+                "reason": "Mitigation guidance mirrors source."
+              },
+              {
+                "unit_id": "p5s1",
+                "kind": "question",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:access-control:fact:lifecycle",
+                    "quote": "Role assignment and removal are themselves permission-sensitive operations."
+                  },
+                  {
+                    "evidence_id": "kb:access-control:fact:review",
+                    "quote": "Access control design includes deciding who may grant and revoke permissions."
+                  }
+                ],
+                "reason": "Question builds on supported facts about lifecycle and review."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": true,
+                "reason": "All claims in post are grounded in evidence."
+              },
+              {
+                "post_index": 1,
+                "supported": true,
+                "reason": "All claims in post are grounded in evidence."
+              },
+              {
+                "post_index": 2,
+                "supported": true,
+                "reason": "All claims in post are grounded in evidence."
+              },
+              {
+                "post_index": 3,
+                "supported": true,
+                "reason": "All claims in post are grounded in evidence."
+              },
+              {
+                "post_index": 4,
+                "supported": true,
+                "reason": "Question is supported by factual premises."
+              }
+            ],
+            "reasons": []
+          },
+          "scope_warnings": [
+            {
+              "unit_id": "p5s1",
+              "marker": "will",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            }
+          ],
+          "attempt": 2
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_1",
+      "status": "shipped",
+      "reviews": [
+        {
+          "accepted": true,
+          "scores": {
+            "accuracy": 5,
+            "usefulness": 5,
+            "clarity": 5,
+            "brand_fit": 5
+          },
+          "total": 20,
+          "reasons": [],
+          "hard_errors": [],
+          "judgment": {
+            "approve": true,
+            "scores": {
+              "accuracy": 5,
+              "usefulness": 5,
+              "clarity": 5,
+              "brand_fit": 5
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:oracle-manipulation:root_cause",
+                    "quote": "Contract logic trusts a price without adequate manipulation resistance."
+                  },
+                  {
+                    "evidence_id": "kb:oracle-manipulation:fact:mechanism",
+                    "quote": "A price taken from a low-liquidity pool can be influenced by trades against that pool."
+                  },
+                  {
+                    "evidence_id": "kb:oracle-manipulation:fact:scope",
+                    "quote": "An oracle response can be present but too old for its intended use; consumers should check its timestamp."
+                  }
+                ],
+                "reason": "Statement correctly combines root cause, manipulation risk, and stale data risk, all directly supported by evidence."
+              },
+              {
+                "unit_id": "p1s2",
+                "kind": "question",
+                "supported": true,
+                "citations": [],
+                "reason": "Prompt asking verification; no factual claim to ground."
+              },
+              {
+                "unit_id": "p1s3",
+                "kind": "cta",
+                "supported": true,
+                "citations": [],
+                "reason": "CTA matches an approved phrase in the brand policy."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": true,
+                "reason": "All units are grounded, CTA approved, and brand guidelines respected."
+              }
+            ],
+            "reasons": [
+              "Draft contains no spelling or spacing errors, follows brand tone, and all factual assertions are directly supported by supplied evidence."
+            ]
+          },
+          "scope_warnings": [],
+          "attempt": 1
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_2",
+      "status": "shipped",
+      "reviews": [
+        {
+          "accepted": true,
+          "scores": {
+            "accuracy": 4,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "total": 16,
+          "reasons": [],
+          "hard_errors": [],
+          "judgment": {
+            "approve": true,
+            "scores": {
+              "accuracy": 4,
+              "usefulness": 4,
+              "clarity": 4,
+              "brand_fit": 4
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:tx-origin:description",
+                    "quote": "Authorization based on tx.origin can be abused through a malicious intermediary contract."
+                  }
+                ],
+                "reason": "Supported by description of tx.origin abuse."
+              },
+              {
+                "unit_id": "p1s2",
+                "kind": "question",
+                "supported": true,
+                "citations": [],
+                "reason": "Question about verification; no evidence required."
+              },
+              {
+                "unit_id": "p1s3",
+                "kind": "cta",
+                "supported": true,
+                "citations": [],
+                "reason": "CTA matches approved list."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": true,
+                "reason": "All claims are supported and brand guidelines are met."
+              }
+            ],
+            "reasons": [
+              "Post meets brand guidelines and all claims are supported."
+            ]
+          },
+          "scope_warnings": [
+            {
+              "unit_id": "p1s2",
+              "marker": "all",
+              "message": "Assess meaning in context; word absence is not a rejection reason."
+            }
+          ],
+          "attempt": 1
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_3",
+      "status": "shipped",
+      "reviews": [
+        {
+          "accepted": true,
+          "scores": {
+            "accuracy": 5,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "total": 17,
+          "reasons": [],
+          "hard_errors": [],
+          "judgment": {
+            "approve": true,
+            "scores": {
+              "accuracy": 5,
+              "usefulness": 4,
+              "clarity": 4,
+              "brand_fit": 4
+            },
+            "claims": [
+              {
+                "unit_id": "p1s1",
+                "kind": "question",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unbounded-loop:description",
+                    "quote": "A loop over growing on-chain data can eventually exceed the transaction gas limit."
+                  }
+                ],
+                "reason": "Question premise supported by evidence."
+              },
+              {
+                "unit_id": "p1s2",
+                "kind": "factual",
+                "supported": true,
+                "citations": [
+                  {
+                    "evidence_id": "kb:unbounded-loop:fact:mechanism",
+                    "quote": "A loop whose work depends on storage growth may become too expensive to execute."
+                  },
+                  {
+                    "evidence_id": "kb:unbounded-loop:fact:impact",
+                    "quote": "Reaching the gas limit can stall a required contract operation."
+                  },
+                  {
+                    "evidence_id": "kb:unbounded-loop:root_cause",
+                    "quote": "The required work grows without a practical bound."
+                  }
+                ],
+                "reason": "Factual claim matches mechanism, impact, and root cause evidence."
+              },
+              {
+                "unit_id": "p1s3",
+                "kind": "cta",
+                "supported": true,
+                "citations": [],
+                "reason": "CTA matches approved list."
+              }
+            ],
+            "support": [
+              {
+                "post_index": 0,
+                "supported": true,
+                "reason": "All claims in post are supported by evidence and CTA is approved."
+              }
+            ],
+            "reasons": [
+              "All claims supported and meet rubric thresholds."
+            ]
+          },
+          "scope_warnings": [],
+          "attempt": 1
+        }
+      ],
+      "reasons": []
+    }
+  ]
+}

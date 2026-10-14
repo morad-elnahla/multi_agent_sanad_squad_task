@@ -1,0 +1,167 @@
+{
+  "$defs": {
+    "ClaimCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "unit_id": {
+          "title": "Unit Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "factual",
+            "question",
+            "cta"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "supported": {
+          "title": "Supported",
+          "type": "boolean"
+        },
+        "citations": {
+          "items": {
+            "$ref": "#/$defs/EvidenceQuote"
+          },
+          "title": "Citations",
+          "type": "array"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "unit_id",
+        "kind",
+        "supported",
+        "citations",
+        "reason"
+      ],
+      "title": "ClaimCheck",
+      "type": "object"
+    },
+    "EvidenceQuote": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "quote": {
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "quote"
+      ],
+      "title": "EvidenceQuote",
+      "type": "object"
+    },
+    "Scores": {
+      "additionalProperties": false,
+      "properties": {
+        "accuracy": {
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Accuracy",
+          "type": "integer"
+        },
+        "usefulness": {
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Usefulness",
+          "type": "integer"
+        },
+        "clarity": {
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Clarity",
+          "type": "integer"
+        },
+        "brand_fit": {
+          "maximum": 5,
+          "minimum": 0,
+          "title": "Brand Fit",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "accuracy",
+        "usefulness",
+        "clarity",
+        "brand_fit"
+      ],
+      "title": "Scores",
+      "type": "object"
+    },
+    "Support": {
+      "additionalProperties": false,
+      "properties": {
+        "post_index": {
+          "minimum": 0,
+          "title": "Post Index",
+          "type": "integer"
+        },
+        "supported": {
+          "title": "Supported",
+          "type": "boolean"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "post_index",
+        "supported",
+        "reason"
+      ],
+      "title": "Support",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "approve": {
+      "title": "Approve",
+      "type": "boolean"
+    },
+    "scores": {
+      "$ref": "#/$defs/Scores"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/ClaimCheck"
+      },
+      "title": "Claims",
+      "type": "array"
+    },
+    "support": {
+      "items": {
+        "$ref": "#/$defs/Support"
+      },
+      "title": "Support",
+      "type": "array"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    }
+  },
+  "required": [
+    "approve",
+    "scores",
+    "support",
+    "reasons"
+  ],
+  "title": "Judgment",
+  "type": "object"
+}

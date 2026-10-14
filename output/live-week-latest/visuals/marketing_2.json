@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.1",
+  "kind": "image_spec",
+  "data": {
+    "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: tx.origin authorization. Two abstract blocks connected by a curved path. One simple directional arrow guides the eye. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+    "alt_text": "Conceptual illustration about tx.origin authorization: Two abstract blocks connected by a curved path. One simple directional arrow guides the eye.",
+    "artifact_type": "written_image_spec",
+    "width": 1600,
+    "height": 900,
+    "source_ids": [
+      "kb:tx-origin:fact:mechanism"
+    ],
+    "concept": {
+      "source_id": "kb:tx-origin:fact:mechanism",
+      "layout": "flow",
+      "symbol": "arrows"
+    },
+    "checks": {
+      "valid_source": true,
+      "approved_layout": true,
+      "approved_symbol": true,
+      "text_overlays": false
+    },
+    "evidence_context": "An intermediary contract can call a target within a transaction initiated by a victim."
+  }
+}

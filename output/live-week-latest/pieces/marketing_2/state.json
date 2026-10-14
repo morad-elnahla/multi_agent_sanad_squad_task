@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.1",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "marketing_2",
+      "type": "marketing",
+      "focus": ""
+    },
+    "candidates": [
+      {
+        "id": "tx-origin",
+        "name": "tx.origin authorization",
+        "severity": "High",
+        "category": "Authorization",
+        "description": "Authorization based on tx.origin can be abused through a malicious intermediary contract.",
+        "root_cause": "Authorization checks the transaction origin instead of the intended caller identity.",
+        "mitigation": "Use an appropriate caller-based authorization design and test intermediary call paths.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+        "facts": [
+          {
+            "id": "mechanism",
+            "text": "An intermediary contract can call a target within a transaction initiated by a victim.",
+            "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+          },
+          {
+            "id": "distinction",
+            "text": "The transaction origin and the immediate caller can be different addresses.",
+            "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+          },
+          {
+            "id": "review",
+            "text": "Caller-based authorization should be evaluated on intermediary call paths, not only direct calls.",
+            "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+          }
+        ]
+      }
+    ],
+    "topic": "tx.origin authorization",
+    "research": {
+      "kb_id": "tx-origin",
+      "source": "kb:tx-origin",
+      "background_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "It is the sole candidate and addresses a high‑severity authorization issue (tx.origin misuse) requiring mitigation.",
+      "evidence": {
+        "kb:tx-origin:name": "tx.origin authorization",
+        "kb:tx-origin:description": "Authorization based on tx.origin can be abused through a malicious intermediary contract.",
+        "kb:tx-origin:root_cause": "Authorization checks the transaction origin instead of the intended caller identity.",
+        "kb:tx-origin:mitigation": "Use an appropriate caller-based authorization design and test intermediary call paths.",
+        "kb:tx-origin:fact:mechanism": "An intermediary contract can call a target within a transaction initiated by a victim.",
+        "kb:tx-origin:fact:distinction": "The transaction origin and the immediate caller can be different addresses.",
+        "kb:tx-origin:fact:review": "Caller-based authorization should be evaluated on intermediary call paths, not only direct calls."
+      },
+      "provenance": {
+        "kb:tx-origin:name": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "kb:tx-origin:description": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "kb:tx-origin:root_cause": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "kb:tx-origin:mitigation": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "kb:tx-origin:fact:mechanism": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "kb:tx-origin:fact:distinction": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "kb:tx-origin:fact:review": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+      }
+    },
+    "evidence": {
+      "kb:tx-origin:name": "tx.origin authorization",
+      "kb:tx-origin:description": "Authorization based on tx.origin can be abused through a malicious intermediary contract.",
+      "kb:tx-origin:root_cause": "Authorization checks the transaction origin instead of the intended caller identity.",
+      "kb:tx-origin:mitigation": "Use an appropriate caller-based authorization design and test intermediary call paths.",
+      "kb:tx-origin:fact:mechanism": "An intermediary contract can call a target within a transaction initiated by a victim.",
+      "kb:tx-origin:fact:distinction": "The transaction origin and the immediate caller can be different addresses.",
+      "kb:tx-origin:fact:review": "Caller-based authorization should be evaluated on intermediary call paths, not only direct calls."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "Using tx.origin for auth lets a malicious intermediary contract trick a victim into authorizing actions. Have you checked caller-based checks on all call paths? DM to discuss a security review.",
+          "evidence_ids": [
+            "kb:tx-origin:description",
+            "kb:tx-origin:fact:mechanism",
+            "kb:tx-origin:fact:distinction",
+            "kb:tx-origin:fact:review"
+          ]
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "Using tx.origin for auth lets a malicious intermediary contract trick a victim into authorizing actions. Have you checked caller-based checks on all call paths? DM to discuss a security review.",
+              "evidence_ids": [
+                "kb:tx-origin:description",
+                "kb:tx-origin:fact:mechanism",
+                "kb:tx-origin:fact:distinction",
+                "kb:tx-origin:fact:review"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": true,
+        "scores": {
+          "accuracy": 4,
+          "usefulness": 4,
+          "clarity": 4,
+          "brand_fit": 4
+        },
+        "total": 16,
+        "reasons": [],
+        "hard_errors": [],
+        "judgment": {
+          "approve": true,
+          "scores": {
+            "accuracy": 4,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:tx-origin:description",
+                  "quote": "Authorization based on tx.origin can be abused through a malicious intermediary contract."
+                }
+              ],
+              "reason": "Supported by description of tx.origin abuse."
+            },
+            {
+              "unit_id": "p1s2",
+              "kind": "question",
+              "supported": true,
+              "citations": [],
+              "reason": "Question about verification; no evidence required."
+            },
+            {
+              "unit_id": "p1s3",
+              "kind": "cta",
+              "supported": true,
+              "citations": [],
+              "reason": "CTA matches approved list."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "All claims are supported and brand guidelines are met."
+            }
+          ],
+          "reasons": [
+            "Post meets brand guidelines and all claims are supported."
+          ]
+        },
+        "scope_warnings": [
+          {
+            "unit_id": "p1s2",
+            "marker": "all",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          }
+        ],
+        "attempt": 1
+      }
+    ],
+    "attempt": 1,
+    "accepted": true,
+    "status": "shipped",
+    "reasons": [],
+    "visual": {
+      "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: tx.origin authorization. Two abstract blocks connected by a curved path. One simple directional arrow guides the eye. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+      "alt_text": "Conceptual illustration about tx.origin authorization: Two abstract blocks connected by a curved path. One simple directional arrow guides the eye.",
+      "artifact_type": "written_image_spec",
+      "width": 1600,
+      "height": 900,
+      "source_ids": [
+        "kb:tx-origin:fact:mechanism"
+      ],
+      "concept": {
+        "source_id": "kb:tx-origin:fact:mechanism",
+        "layout": "flow",
+        "symbol": "arrows"
+      },
+      "checks": {
+        "valid_source": true,
+        "approved_layout": true,
+        "approved_symbol": true,
+        "text_overlays": false
+      },
+      "evidence_context": "An intermediary contract can call a target within a transaction initiated by a victim."
+    },
+    "visual_path": "visuals/marketing_2.json"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "source_id": {
+      "title": "Source Id",
+      "type": "string"
+    },
+    "layout": {
+      "enum": [
+        "flow",
+        "barrier",
+        "cycle"
+      ],
+      "title": "Layout",
+      "type": "string"
+    },
+    "symbol": {
+      "enum": [
+        "arrows",
+        "gate",
+        "loop",
+        "shield"
+      ],
+      "title": "Symbol",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "layout",
+    "symbol"
+  ],
+  "title": "VisualConcept",
+  "type": "object"
+}

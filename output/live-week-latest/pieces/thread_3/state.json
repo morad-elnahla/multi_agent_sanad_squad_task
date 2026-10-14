@@ -1,0 +1,491 @@
+{
+  "schema_version": "1.1",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "thread_3",
+      "type": "tech-thread",
+      "focus": "access control"
+    },
+    "candidates": [
+      {
+        "id": "access-control",
+        "name": "Missing access control",
+        "severity": "Critical",
+        "category": "Authorization",
+        "description": "A sensitive function without adequate authorization can be called by an unintended account.",
+        "root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+        "mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation.",
+        "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+        "facts": [
+          {
+            "id": "scope",
+            "text": "Different privileged operations can require different roles.",
+            "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+          },
+          {
+            "id": "lifecycle",
+            "text": "Role assignment and removal are themselves permission-sensitive operations.",
+            "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+          },
+          {
+            "id": "review",
+            "text": "Access control design includes deciding who may grant and revoke permissions.",
+            "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+          }
+        ]
+      }
+    ],
+    "topic": "Missing access control",
+    "research": {
+      "kb_id": "access-control",
+      "source": "kb:access-control",
+      "background_url": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "Matches the requested focus on access control and provides relevant details about missing authorization.",
+      "evidence": {
+        "kb:access-control:name": "Missing access control",
+        "kb:access-control:description": "A sensitive function without adequate authorization can be called by an unintended account.",
+        "kb:access-control:root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+        "kb:access-control:mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation.",
+        "kb:access-control:fact:scope": "Different privileged operations can require different roles.",
+        "kb:access-control:fact:lifecycle": "Role assignment and removal are themselves permission-sensitive operations.",
+        "kb:access-control:fact:review": "Access control design includes deciding who may grant and revoke permissions."
+      },
+      "provenance": {
+        "kb:access-control:name": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "kb:access-control:description": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "kb:access-control:root_cause": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "kb:access-control:mitigation": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "kb:access-control:fact:scope": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "kb:access-control:fact:lifecycle": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "kb:access-control:fact:review": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+      }
+    },
+    "evidence": {
+      "kb:access-control:name": "Missing access control",
+      "kb:access-control:description": "A sensitive function without adequate authorization can be called by an unintended account.",
+      "kb:access-control:root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+      "kb:access-control:mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation.",
+      "kb:access-control:fact:scope": "Different privileged operations can require different roles.",
+      "kb:access-control:fact:lifecycle": "Role assignment and removal are themselves permission-sensitive operations.",
+      "kb:access-control:fact:review": "Access control design includes deciding who may grant and revoke permissions."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "Missing access control lets an unintended account call privileged functions.",
+          "evidence_ids": [
+            "kb:access-control:description"
+          ]
+        },
+        {
+          "text": "Permissions are missing or applied inconsistently across privileged entry points, creating the gap.",
+          "evidence_ids": [
+            "kb:access-control:root_cause"
+          ]
+        },
+        {
+          "text": "Different privileged operations can require different roles.",
+          "evidence_ids": [
+            "kb:access-control:fact:scope"
+          ]
+        },
+        {
+          "text": "Mitigate by defining roles explicitly and testing unauthorized calls for every privileged operation.",
+          "evidence_ids": [
+            "kb:access-control:mitigation"
+          ]
+        },
+        {
+          "text": "How will you verify that role assignment and removal, which are permission-sensitive operations, are correctly restricted?",
+          "evidence_ids": [
+            "kb:access-control:fact:lifecycle",
+            "kb:access-control:fact:review"
+          ]
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "Missing access control lets anyone call privileged functions. A sensitive function without adequate authorization can be called by an unintended account.",
+              "evidence_ids": [
+                "kb:access-control:description"
+              ]
+            },
+            {
+              "text": "The root cause is missing or inconsistently applied permissions across privileged entry points, allowing unintended callers to execute critical logic.",
+              "evidence_ids": [
+                "kb:access-control:root_cause"
+              ]
+            },
+            {
+              "text": "Different privileged operations can require different roles, so a single missing check may expose several functions.",
+              "evidence_ids": [
+                "kb:access-control:fact:scope"
+              ]
+            },
+            {
+              "text": "Mitigate by defining roles explicitly and testing unauthorized calls for every privileged operation.",
+              "evidence_ids": [
+                "kb:access-control:mitigation"
+              ]
+            },
+            {
+              "text": "How will you verify that role assignment and revocation themselves are permission-sensitive and correctly restricted?",
+              "evidence_ids": [
+                "kb:access-control:fact:lifecycle",
+                "kb:access-control:fact:review"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "attempt": 2,
+        "draft": {
+          "posts": [
+            {
+              "text": "Missing access control lets an unintended account call privileged functions.",
+              "evidence_ids": [
+                "kb:access-control:description"
+              ]
+            },
+            {
+              "text": "Permissions are missing or applied inconsistently across privileged entry points, creating the gap.",
+              "evidence_ids": [
+                "kb:access-control:root_cause"
+              ]
+            },
+            {
+              "text": "Different privileged operations can require different roles.",
+              "evidence_ids": [
+                "kb:access-control:fact:scope"
+              ]
+            },
+            {
+              "text": "Mitigate by defining roles explicitly and testing unauthorized calls for every privileged operation.",
+              "evidence_ids": [
+                "kb:access-control:mitigation"
+              ]
+            },
+            {
+              "text": "How will you verify that role assignment and removal, which are permission-sensitive operations, are correctly restricted?",
+              "evidence_ids": [
+                "kb:access-control:fact:lifecycle",
+                "kb:access-control:fact:review"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": false,
+        "scores": {
+          "accuracy": 1,
+          "usefulness": 2,
+          "clarity": 4,
+          "brand_fit": 4
+        },
+        "total": 11,
+        "reasons": [
+          "p1s1: Overstates impact with 'anyone'; source only mentions an unintended account, not universal access.",
+          "p1s1: Factual claim has no evidence quote",
+          "p2s1: Adds causal clause 'allowing unintended callers to execute critical logic' not present in source.",
+          "p3s1: Inference that a single missing check may expose several functions is not supported by source.",
+          "Multiple factual inaccuracies reduce accuracy to 1.",
+          "Overall score 11 is below required minimum total of 16.",
+          "Therefore the draft cannot be approved.",
+          "Post 1: Contains overstatement 'anyone' not supported by evidence.",
+          "Post 2: Causal claim not directly supported by source.",
+          "Post 3: Inference about exposure not present in source."
+        ],
+        "hard_errors": [
+          "p1s1: Overstates impact with 'anyone'; source only mentions an unintended account, not universal access.",
+          "p1s1: Factual claim has no evidence quote",
+          "p2s1: Adds causal clause 'allowing unintended callers to execute critical logic' not present in source.",
+          "p3s1: Inference that a single missing check may expose several functions is not supported by source."
+        ],
+        "judgment": {
+          "approve": false,
+          "scores": {
+            "accuracy": 1,
+            "usefulness": 2,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "factual",
+              "supported": false,
+              "citations": [],
+              "reason": "Overstates impact with 'anyone'; source only mentions an unintended account, not universal access."
+            },
+            {
+              "unit_id": "p1s2",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:description",
+                  "quote": "A sensitive function without adequate authorization can be called by an unintended account."
+                }
+              ],
+              "reason": "Exact match to source description."
+            },
+            {
+              "unit_id": "p2s1",
+              "kind": "factual",
+              "supported": false,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:root_cause",
+                  "quote": "Permissions are missing or applied inconsistently across privileged entry points."
+                }
+              ],
+              "reason": "Adds causal clause 'allowing unintended callers to execute critical logic' not present in source."
+            },
+            {
+              "unit_id": "p3s1",
+              "kind": "factual",
+              "supported": false,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:fact:scope",
+                  "quote": "Different privileged operations can require different roles."
+                }
+              ],
+              "reason": "Inference that a single missing check may expose several functions is not supported by source."
+            },
+            {
+              "unit_id": "p4s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:mitigation",
+                  "quote": "Define roles explicitly and test unauthorized calls for every privileged operation."
+                }
+              ],
+              "reason": "Directly matches mitigation guidance."
+            },
+            {
+              "unit_id": "p5s1",
+              "kind": "question",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:fact:lifecycle",
+                  "quote": "Role assignment and removal are themselves permission-sensitive operations."
+                },
+                {
+                  "evidence_id": "kb:access-control:fact:review",
+                  "quote": "Access control design includes deciding who may grant and revoke permissions."
+                }
+              ],
+              "reason": "Question premise aligns with two factual statements from sources."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": false,
+              "reason": "Contains overstatement 'anyone' not supported by evidence."
+            },
+            {
+              "post_index": 1,
+              "supported": false,
+              "reason": "Causal claim not directly supported by source."
+            },
+            {
+              "post_index": 2,
+              "supported": false,
+              "reason": "Inference about exposure not present in source."
+            },
+            {
+              "post_index": 3,
+              "supported": true,
+              "reason": "All statements fully supported."
+            },
+            {
+              "post_index": 4,
+              "supported": true,
+              "reason": "Question premise supported; no factual errors."
+            }
+          ],
+          "reasons": [
+            "Multiple factual inaccuracies reduce accuracy to 1.",
+            "Overall score 11 is below required minimum total of 16.",
+            "Therefore the draft cannot be approved."
+          ]
+        },
+        "scope_warnings": [
+          {
+            "unit_id": "p5s1",
+            "marker": "will",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          }
+        ],
+        "attempt": 1
+      },
+      {
+        "accepted": true,
+        "scores": {
+          "accuracy": 5,
+          "usefulness": 4,
+          "clarity": 5,
+          "brand_fit": 5
+        },
+        "total": 19,
+        "reasons": [],
+        "hard_errors": [],
+        "judgment": {
+          "approve": true,
+          "scores": {
+            "accuracy": 5,
+            "usefulness": 4,
+            "clarity": 5,
+            "brand_fit": 5
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:description",
+                  "quote": "A sensitive function without adequate authorization can be called by an unintended account."
+                }
+              ],
+              "reason": "Statement aligns with description of missing access control."
+            },
+            {
+              "unit_id": "p2s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:root_cause",
+                  "quote": "Permissions are missing or applied inconsistently across privileged entry points."
+                }
+              ],
+              "reason": "Root‑cause matches source wording."
+            },
+            {
+              "unit_id": "p3s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:fact:scope",
+                  "quote": "Different privileged operations can require different roles."
+                }
+              ],
+              "reason": "Scope fact is directly quoted."
+            },
+            {
+              "unit_id": "p4s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:mitigation",
+                  "quote": "Define roles explicitly and test unauthorized calls for every privileged operation."
+                }
+              ],
+              "reason": "Mitigation guidance mirrors source."
+            },
+            {
+              "unit_id": "p5s1",
+              "kind": "question",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:access-control:fact:lifecycle",
+                  "quote": "Role assignment and removal are themselves permission-sensitive operations."
+                },
+                {
+                  "evidence_id": "kb:access-control:fact:review",
+                  "quote": "Access control design includes deciding who may grant and revoke permissions."
+                }
+              ],
+              "reason": "Question builds on supported facts about lifecycle and review."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "All claims in post are grounded in evidence."
+            },
+            {
+              "post_index": 1,
+              "supported": true,
+              "reason": "All claims in post are grounded in evidence."
+            },
+            {
+              "post_index": 2,
+              "supported": true,
+              "reason": "All claims in post are grounded in evidence."
+            },
+            {
+              "post_index": 3,
+              "supported": true,
+              "reason": "All claims in post are grounded in evidence."
+            },
+            {
+              "post_index": 4,
+              "supported": true,
+              "reason": "Question is supported by factual premises."
+            }
+          ],
+          "reasons": []
+        },
+        "scope_warnings": [
+          {
+            "unit_id": "p5s1",
+            "marker": "will",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          }
+        ],
+        "attempt": 2
+      }
+    ],
+    "attempt": 2,
+    "accepted": true,
+    "status": "shipped",
+    "reasons": [],
+    "visual": {
+      "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: Missing access control. Two abstract blocks separated by a visible gap. One abstract gate marks a boundary. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+      "alt_text": "Conceptual illustration about Missing access control: Two abstract blocks separated by a visible gap. One abstract gate marks a boundary.",
+      "artifact_type": "written_image_spec",
+      "width": 1600,
+      "height": 900,
+      "source_ids": [
+        "kb:access-control:description"
+      ],
+      "concept": {
+        "source_id": "kb:access-control:description",
+        "layout": "barrier",
+        "symbol": "gate"
+      },
+      "checks": {
+        "valid_source": true,
+        "approved_layout": true,
+        "approved_symbol": true,
+        "text_overlays": false
+      },
+      "evidence_context": "A sensitive function without adequate authorization can be called by an unintended account."
+    },
+    "visual_path": "visuals/thread_3.json"
+  }
+}

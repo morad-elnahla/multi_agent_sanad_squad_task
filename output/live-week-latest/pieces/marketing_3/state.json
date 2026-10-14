@@ -1,0 +1,210 @@
+{
+  "schema_version": "1.1",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "marketing_3",
+      "type": "marketing",
+      "focus": ""
+    },
+    "candidates": [
+      {
+        "id": "unbounded-loop",
+        "name": "Unbounded iteration",
+        "severity": "Medium",
+        "category": "Availability",
+        "description": "A loop over growing on-chain data can eventually exceed the transaction gas limit.",
+        "root_cause": "The required work grows without a practical bound.",
+        "mitigation": "Bound work per transaction or use a carefully designed batching approach.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+        "facts": [
+          {
+            "id": "mechanism",
+            "text": "A loop whose work depends on storage growth may become too expensive to execute.",
+            "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+          },
+          {
+            "id": "impact",
+            "text": "Reaching the gas limit can stall a required contract operation.",
+            "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+          },
+          {
+            "id": "scope",
+            "text": "A loop is not inherently a vulnerability; the relevant issue is whether required work can grow beyond feasible gas.",
+            "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+          }
+        ]
+      }
+    ],
+    "topic": "Unbounded iteration",
+    "research": {
+      "kb_id": "unbounded-loop",
+      "source": "kb:unbounded-loop",
+      "background_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "It directly addresses the unbounded iteration issue described, matching the provided candidate's focus and details.",
+      "evidence": {
+        "kb:unbounded-loop:name": "Unbounded iteration",
+        "kb:unbounded-loop:description": "A loop over growing on-chain data can eventually exceed the transaction gas limit.",
+        "kb:unbounded-loop:root_cause": "The required work grows without a practical bound.",
+        "kb:unbounded-loop:mitigation": "Bound work per transaction or use a carefully designed batching approach.",
+        "kb:unbounded-loop:fact:mechanism": "A loop whose work depends on storage growth may become too expensive to execute.",
+        "kb:unbounded-loop:fact:impact": "Reaching the gas limit can stall a required contract operation.",
+        "kb:unbounded-loop:fact:scope": "A loop is not inherently a vulnerability; the relevant issue is whether required work can grow beyond feasible gas."
+      },
+      "provenance": {
+        "kb:unbounded-loop:name": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:unbounded-loop:description": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:unbounded-loop:root_cause": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:unbounded-loop:mitigation": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:unbounded-loop:fact:mechanism": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:unbounded-loop:fact:impact": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:unbounded-loop:fact:scope": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      }
+    },
+    "evidence": {
+      "kb:unbounded-loop:name": "Unbounded iteration",
+      "kb:unbounded-loop:description": "A loop over growing on-chain data can eventually exceed the transaction gas limit.",
+      "kb:unbounded-loop:root_cause": "The required work grows without a practical bound.",
+      "kb:unbounded-loop:mitigation": "Bound work per transaction or use a carefully designed batching approach.",
+      "kb:unbounded-loop:fact:mechanism": "A loop whose work depends on storage growth may become too expensive to execute.",
+      "kb:unbounded-loop:fact:impact": "Reaching the gas limit can stall a required contract operation.",
+      "kb:unbounded-loop:fact:scope": "A loop is not inherently a vulnerability; the relevant issue is whether required work can grow beyond feasible gas."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "Can a loop over growing on-chain data exceed the gas limit? Unbounded iteration can grow work without bound, eventually stalling the contract. DM to discuss a security review.",
+          "evidence_ids": [
+            "kb:unbounded-loop:fact:mechanism",
+            "kb:unbounded-loop:fact:impact",
+            "kb:unbounded-loop:root_cause",
+            "kb:unbounded-loop:description"
+          ]
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "Can a loop over growing on-chain data exceed the gas limit? Unbounded iteration can grow work without bound, eventually stalling the contract. DM to discuss a security review.",
+              "evidence_ids": [
+                "kb:unbounded-loop:fact:mechanism",
+                "kb:unbounded-loop:fact:impact",
+                "kb:unbounded-loop:root_cause",
+                "kb:unbounded-loop:description"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": true,
+        "scores": {
+          "accuracy": 5,
+          "usefulness": 4,
+          "clarity": 4,
+          "brand_fit": 4
+        },
+        "total": 17,
+        "reasons": [],
+        "hard_errors": [],
+        "judgment": {
+          "approve": true,
+          "scores": {
+            "accuracy": 5,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "question",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unbounded-loop:description",
+                  "quote": "A loop over growing on-chain data can eventually exceed the transaction gas limit."
+                }
+              ],
+              "reason": "Question premise supported by evidence."
+            },
+            {
+              "unit_id": "p1s2",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:unbounded-loop:fact:mechanism",
+                  "quote": "A loop whose work depends on storage growth may become too expensive to execute."
+                },
+                {
+                  "evidence_id": "kb:unbounded-loop:fact:impact",
+                  "quote": "Reaching the gas limit can stall a required contract operation."
+                },
+                {
+                  "evidence_id": "kb:unbounded-loop:root_cause",
+                  "quote": "The required work grows without a practical bound."
+                }
+              ],
+              "reason": "Factual claim matches mechanism, impact, and root cause evidence."
+            },
+            {
+              "unit_id": "p1s3",
+              "kind": "cta",
+              "supported": true,
+              "citations": [],
+              "reason": "CTA matches approved list."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "All claims in post are supported by evidence and CTA is approved."
+            }
+          ],
+          "reasons": [
+            "All claims supported and meet rubric thresholds."
+          ]
+        },
+        "scope_warnings": [],
+        "attempt": 1
+      }
+    ],
+    "attempt": 1,
+    "accepted": true,
+    "status": "shipped",
+    "reasons": [],
+    "visual": {
+      "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: Unbounded iteration. A segmented circular path surrounding an abstract block. One curved return path provides the focal point. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+      "alt_text": "Conceptual illustration about Unbounded iteration: A segmented circular path surrounding an abstract block. One curved return path provides the focal point.",
+      "artifact_type": "written_image_spec",
+      "width": 1600,
+      "height": 900,
+      "source_ids": [
+        "kb:unbounded-loop:fact:mechanism"
+      ],
+      "concept": {
+        "source_id": "kb:unbounded-loop:fact:mechanism",
+        "layout": "cycle",
+        "symbol": "loop"
+      },
+      "checks": {
+        "valid_source": true,
+        "approved_layout": true,
+        "approved_symbol": true,
+        "text_overlays": false
+      },
+      "evidence_context": "A loop whose work depends on storage growth may become too expensive to execute."
+    },
+    "visual_path": "visuals/marketing_3.json"
+  }
+}

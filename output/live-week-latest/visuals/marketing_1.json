@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.1",
+  "kind": "image_spec",
+  "data": {
+    "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: Oracle manipulation. Two abstract blocks separated by a visible gap. One abstract shield acts as an editorial motif, not a security guarantee. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+    "alt_text": "Conceptual illustration about Oracle manipulation: Two abstract blocks separated by a visible gap. One abstract shield acts as an editorial motif, not a security guarantee.",
+    "artifact_type": "written_image_spec",
+    "width": 1600,
+    "height": 900,
+    "source_ids": [
+      "kb:oracle-manipulation:root_cause"
+    ],
+    "concept": {
+      "source_id": "kb:oracle-manipulation:root_cause",
+      "layout": "barrier",
+      "symbol": "shield"
+    },
+    "checks": {
+      "valid_source": true,
+      "approved_layout": true,
+      "approved_symbol": true,
+      "text_overlays": false
+    },
+    "evidence_context": "Contract logic trusts a price without adequate manipulation resistance."
+  }
+}

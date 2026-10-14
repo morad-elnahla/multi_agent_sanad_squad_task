@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.1",
+  "kind": "resolved_plan",
+  "data": [
+    {
+      "id": "thread_1",
+      "type": "tech-thread",
+      "focus": "reentrancy",
+      "topic": "Reentrancy",
+      "source": "kb:reentrancy",
+      "status": "shipped"
+    },
+    {
+      "id": "thread_2",
+      "type": "tech-thread",
+      "focus": "",
+      "topic": "Unchecked external call result",
+      "source": "kb:unchecked-return",
+      "status": "dropped"
+    },
+    {
+      "id": "thread_3",
+      "type": "tech-thread",
+      "focus": "access control",
+      "topic": "Missing access control",
+      "source": "kb:access-control",
+      "status": "shipped"
+    },
+    {
+      "id": "marketing_1",
+      "type": "marketing",
+      "focus": "oracle manipulation",
+      "topic": "Oracle manipulation",
+      "source": "kb:oracle-manipulation",
+      "status": "shipped"
+    },
+    {
+      "id": "marketing_2",
+      "type": "marketing",
+      "focus": "",
+      "topic": "tx.origin authorization",
+      "source": "kb:tx-origin",
+      "status": "shipped"
+    },
+    {
+      "id": "marketing_3",
+      "type": "marketing",
+      "focus": "",
+      "topic": "Unbounded iteration",
+      "source": "kb:unbounded-loop",
+      "status": "shipped"
+    }
+  ]
+}

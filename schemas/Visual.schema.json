@@ -1,0 +1,21 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "prompt": {
+      "minLength": 10,
+      "title": "Prompt",
+      "type": "string"
+    },
+    "alt_text": {
+      "minLength": 5,
+      "title": "Alt Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "prompt",
+    "alt_text"
+  ],
+  "title": "Visual",
+  "type": "object"
+}

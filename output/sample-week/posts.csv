@@ -1,0 +1,31 @@
+Post Text,Image
+"1/5 Reentrancy
+
+2/5 An external call can let another contract re-enter before the caller has finished updating its state.
+
+3/5 An invariant is temporarily broken across an external call.
+
+4/5 Update state before external calls and consider a reentrancy guard; examine cross-function paths too.
+
+5/5 Which test would show that this assumption still holds across every entry point?",visuals/thread_1.json
+"1/5 Unchecked external call result
+
+2/5 Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.
+
+3/5 The caller does not check the success flag returned by a low-level call.
+
+4/5 Check call outcomes and define explicit failure handling.
+
+5/5 Which test would show that this assumption still holds across every entry point?",visuals/thread_2.json
+"1/5 Missing access control
+
+2/5 A sensitive function without adequate authorization can be called by an unintended account.
+
+3/5 Permissions are missing or applied inconsistently across privileged entry points.
+
+4/5 Define roles explicitly and test unauthorized calls for every privileged operation.
+
+5/5 Which test would show that this assumption still holds across every entry point?",visuals/thread_3.json
+A manipulable price input can distort collateral valuation or other price-dependent decisions. What assumptions would you want challenged in a security review?,visuals/marketing_1.json
+Authorization based on tx.origin can be abused through a malicious intermediary contract. What assumptions would you want challenged in a security review?,visuals/marketing_2.json
+A loop over growing on-chain data can eventually exceed the transaction gas limit. What assumptions would you want challenged in a security review?,visuals/marketing_3.json

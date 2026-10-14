@@ -1,0 +1,49 @@
+{
+  "$defs": {
+    "Slot": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Type",
+          "type": "string"
+        },
+        "focus": {
+          "default": "",
+          "maxLength": 200,
+          "title": "Focus",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "title": "Slot",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "slots": {
+      "items": {
+        "$ref": "#/$defs/Slot"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Slots",
+      "type": "array"
+    }
+  },
+  "required": [
+    "slots"
+  ],
+  "title": "Plan",
+  "type": "object"
+}

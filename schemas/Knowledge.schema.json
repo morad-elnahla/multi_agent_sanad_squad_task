@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "KnowledgeFact": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9_-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 10,
+          "title": "Text",
+          "type": "string"
+        },
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "source_url"
+      ],
+      "title": "KnowledgeFact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "category": {
+      "title": "Category",
+      "type": "string"
+    },
+    "description": {
+      "minLength": 1,
+      "title": "Description",
+      "type": "string"
+    },
+    "root_cause": {
+      "minLength": 1,
+      "title": "Root Cause",
+      "type": "string"
+    },
+    "mitigation": {
+      "minLength": 1,
+      "title": "Mitigation",
+      "type": "string"
+    },
+    "source_url": {
+      "title": "Source Url",
+      "type": "string"
+    },
+    "severity_note": {
+      "title": "Severity Note",
+      "type": "string"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeFact"
+      },
+      "title": "Facts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "severity",
+    "category",
+    "description",
+    "root_cause",
+    "mitigation",
+    "source_url",
+    "severity_note"
+  ],
+  "title": "Knowledge",
+  "type": "object"
+}

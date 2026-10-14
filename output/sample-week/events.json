@@ -1,0 +1,318 @@
+{
+  "schema_version": "1.0",
+  "kind": "events",
+  "data": [
+    {
+      "slot": "thread_1",
+      "stage": "research",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.297837+00:00"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "research",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.297946+00:00"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "research",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.297974+00:00"
+    },
+    {
+      "slot": "thread_1",
+      "stage": "research",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.298550+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "research",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.298683+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "research",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.298795+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_1",
+      "stage": "write",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.301557+00:00"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "write",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.301650+00:00"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "write",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.301693+00:00"
+    },
+    {
+      "slot": "thread_1",
+      "stage": "write",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.302032+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "write",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.302276+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "write",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.302507+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_1",
+      "stage": "review",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.304569+00:00"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "review",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.306494+00:00"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "review",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.306677+00:00"
+    },
+    {
+      "slot": "thread_1",
+      "stage": "review",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.307799+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "review",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.308236+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "review",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.308539+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "thread_1",
+      "stage": "visual",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.311032+00:00"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "visual",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.311630+00:00"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "visual",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.311674+00:00"
+    },
+    {
+      "slot": "thread_1",
+      "stage": "visual",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.312375+00:00",
+      "status": "shipped"
+    },
+    {
+      "slot": "thread_2",
+      "stage": "visual",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.312857+00:00",
+      "status": "shipped"
+    },
+    {
+      "slot": "thread_3",
+      "stage": "visual",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.313231+00:00",
+      "status": "shipped"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "research",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.315113+00:00"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "research",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.315193+00:00"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "research",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.315218+00:00"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "research",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.315381+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "research",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.315501+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "research",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.315609+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "write",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.317203+00:00"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "write",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.317268+00:00"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "write",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.317297+00:00"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "write",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.317519+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "write",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.317812+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "write",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.318099+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "review",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.319465+00:00"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "review",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.319584+00:00"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "review",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.319652+00:00"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "review",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.319971+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "review",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.320241+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "review",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.320481+00:00",
+      "status": "running"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "visual",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.323066+00:00"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "visual",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.323201+00:00"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "visual",
+      "event": "start",
+      "time": "2026-10-12T10:53:45.323239+00:00"
+    },
+    {
+      "slot": "marketing_1",
+      "stage": "visual",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.323581+00:00",
+      "status": "shipped"
+    },
+    {
+      "slot": "marketing_2",
+      "stage": "visual",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.323881+00:00",
+      "status": "shipped"
+    },
+    {
+      "slot": "marketing_3",
+      "stage": "visual",
+      "event": "end",
+      "time": "2026-10-12T10:53:45.324348+00:00",
+      "status": "shipped"
+    }
+  ]
+}

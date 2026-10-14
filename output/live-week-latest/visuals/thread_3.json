@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.1",
+  "kind": "image_spec",
+  "data": {
+    "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: Missing access control. Two abstract blocks separated by a visible gap. One abstract gate marks a boundary. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+    "alt_text": "Conceptual illustration about Missing access control: Two abstract blocks separated by a visible gap. One abstract gate marks a boundary.",
+    "artifact_type": "written_image_spec",
+    "width": 1600,
+    "height": 900,
+    "source_ids": [
+      "kb:access-control:description"
+    ],
+    "concept": {
+      "source_id": "kb:access-control:description",
+      "layout": "barrier",
+      "symbol": "gate"
+    },
+    "checks": {
+      "valid_source": true,
+      "approved_layout": true,
+      "approved_symbol": true,
+      "text_overlays": false
+    },
+    "evidence_context": "A sensitive function without adequate authorization can be called by an unintended account."
+  }
+}

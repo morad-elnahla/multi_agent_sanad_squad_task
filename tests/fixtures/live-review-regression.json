@@ -1,0 +1,502 @@
+[
+  {
+    "slot": "thread_1",
+    "evidence": {
+      "kb:reentrancy:name": "Reentrancy",
+      "kb:reentrancy:description": "An external call can let another contract re-enter before the caller has finished updating its state.",
+      "kb:reentrancy:root_cause": "An invariant is temporarily broken across an external call.",
+      "kb:reentrancy:mitigation": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too.",
+      "kb:reentrancy:fact:mechanism": "A contract interaction transfers control to the called contract, which may call back.",
+      "kb:reentrancy:fact:scope": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths.",
+      "kb:reentrancy:fact:pattern": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "Reentrancy can let a contract be called again before it finishes updating its state.",
+          "evidence_ids": [
+            "kb:reentrancy:description"
+          ]
+        },
+        {
+          "text": "When a contract calls another, control passes to the callee, which may call back.",
+          "evidence_ids": [
+            "kb:reentrancy:fact:mechanism"
+          ]
+        },
+        {
+          "text": "The risk is not limited to Ether transfers; any call to another contract can create a re-entry path.",
+          "evidence_ids": [
+            "kb:reentrancy:fact:scope"
+          ]
+        },
+        {
+          "text": "Update state before external calls and consider a reentrancy guard. Follow the checks-effects-interactions pattern: checks, then state changes, then external interactions.",
+          "evidence_ids": [
+            "kb:reentrancy:mitigation",
+            "kb:reentrancy:fact:pattern"
+          ]
+        },
+        {
+          "text": "Given that an invariant is temporarily broken during an external call, have you verified that no re-entry paths remain?",
+          "evidence_ids": [
+            "kb:reentrancy:root_cause"
+          ]
+        }
+      ]
+    },
+    "judgment": {
+      "approve": true,
+      "scores": {
+        "accuracy": 5,
+        "usefulness": 5,
+        "clarity": 5,
+        "brand_fit": 5
+      },
+      "claims": [
+        {
+          "unit_id": "p1s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:reentrancy:description",
+              "quote": "An external call can let another contract re-enter before the caller has finished updating its state."
+            }
+          ],
+          "reason": "Statement matches description evidence."
+        },
+        {
+          "unit_id": "p2s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:reentrancy:fact:mechanism",
+              "quote": "A contract interaction transfers control to the called contract, which may call back."
+            }
+          ],
+          "reason": "Statement matches mechanism evidence."
+        },
+        {
+          "unit_id": "p3s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:reentrancy:fact:scope",
+              "quote": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths."
+            }
+          ],
+          "reason": "Scope claim supported by scope evidence."
+        },
+        {
+          "unit_id": "p3s2",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:reentrancy:fact:scope",
+              "quote": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths."
+            }
+          ],
+          "reason": "Statement supported by same scope evidence."
+        },
+        {
+          "unit_id": "p4s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:reentrancy:mitigation",
+              "quote": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too."
+            }
+          ],
+          "reason": "Mitigation advice matches mitigation evidence."
+        },
+        {
+          "unit_id": "p4s2",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:reentrancy:fact:pattern",
+              "quote": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions."
+            }
+          ],
+          "reason": "Pattern description matches evidence."
+        },
+        {
+          "unit_id": "p5s1",
+          "kind": "question",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:reentrancy:root_cause",
+              "quote": "An invariant is temporarily broken across an external call."
+            }
+          ],
+          "reason": "Question premise is grounded in root\u2011cause evidence."
+        }
+      ],
+      "support": [
+        {
+          "post_index": 0,
+          "supported": true,
+          "reason": "All units in this post are grounded in evidence."
+        },
+        {
+          "post_index": 1,
+          "supported": true,
+          "reason": "All units in this post are grounded in evidence."
+        },
+        {
+          "post_index": 2,
+          "supported": true,
+          "reason": "All units in this post are grounded in evidence."
+        },
+        {
+          "post_index": 3,
+          "supported": true,
+          "reason": "All units in this post are grounded in evidence."
+        },
+        {
+          "post_index": 4,
+          "supported": true,
+          "reason": "All units in this post are grounded in evidence."
+        }
+      ],
+      "reasons": [
+        "All statements are supported by provided evidence and comply with brand guidelines."
+      ]
+    }
+  },
+  {
+    "slot": "thread_2",
+    "evidence": {
+      "kb:unchecked-return:name": "Unchecked external call result",
+      "kb:unchecked-return:description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+      "kb:unchecked-return:root_cause": "The caller does not check the success flag returned by a low-level call.",
+      "kb:unchecked-return:mitigation": "Check call outcomes and define explicit failure handling.",
+      "kb:unchecked-return:fact:mechanism": "Low-level calls expose a success flag that the caller can inspect.",
+      "kb:unchecked-return:fact:consequence": "If failure is ignored, subsequent logic may rely on an operation that did not complete.",
+      "kb:unchecked-return:fact:review": "The failure path needs explicit handling, not only a check of the successful path."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "Unchecked external call result appears when a low-level call fails and its return value is ignored. The contract then proceeds as if the operation succeeded.",
+          "evidence_ids": [
+            "kb:unchecked-return:name",
+            "kb:unchecked-return:description"
+          ]
+        },
+        {
+          "text": "Low-level calls expose a success flag that the caller can inspect.",
+          "evidence_ids": [
+            "kb:unchecked-return:fact:mechanism"
+          ]
+        },
+        {
+          "text": "The root cause is that the caller does not check the success flag returned by the low-level call.",
+          "evidence_ids": [
+            "kb:unchecked-return:root_cause"
+          ]
+        },
+        {
+          "text": "If the failure is ignored, later logic may rely on an operation that never completed.",
+          "evidence_ids": [
+            "kb:unchecked-return:fact:consequence"
+          ]
+        },
+        {
+          "text": "Mitigate by checking call outcomes and defining explicit failure handling. Ensure the failure path is handled, not just the success branch. How do you verify external call results?",
+          "evidence_ids": [
+            "kb:unchecked-return:mitigation",
+            "kb:unchecked-return:fact:review"
+          ]
+        }
+      ]
+    },
+    "judgment": {
+      "approve": false,
+      "scores": {
+        "accuracy": 2,
+        "usefulness": 3,
+        "clarity": 4,
+        "brand_fit": 4
+      },
+      "claims": [
+        {
+          "unit_id": "p1s1",
+          "kind": "factual",
+          "supported": false,
+          "citations": [],
+          "reason": "No evidence directly states that the result appears when a low-level call fails and its return value is ignored."
+        },
+        {
+          "unit_id": "p1s2",
+          "kind": "factual",
+          "supported": false,
+          "citations": [],
+          "reason": "Evidence does not contain the exact phrasing that the contract proceeds as if the operation succeeded."
+        },
+        {
+          "unit_id": "p2s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:unchecked-return:fact:mechanism",
+              "quote": "Low-level calls expose a success flag that the caller can inspect."
+            }
+          ],
+          "reason": "Exact match in evidence."
+        },
+        {
+          "unit_id": "p3s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:unchecked-return:root_cause",
+              "quote": "The caller does not check the success flag returned by a low-level call."
+            }
+          ],
+          "reason": "Evidence directly states the root cause."
+        },
+        {
+          "unit_id": "p4s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:unchecked-return:fact:consequence",
+              "quote": "If failure is ignored, subsequent logic may rely on an operation that did not complete."
+            }
+          ],
+          "reason": "Evidence supports the consequence claim."
+        },
+        {
+          "unit_id": "p5s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:unchecked-return:mitigation",
+              "quote": "Check call outcomes and define explicit failure handling."
+            }
+          ],
+          "reason": "Evidence provides the mitigation statement."
+        },
+        {
+          "unit_id": "p5s2",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:unchecked-return:fact:review",
+              "quote": "The failure path needs explicit handling, not only a check of the successful path."
+            }
+          ],
+          "reason": "Evidence aligns with the recommendation."
+        },
+        {
+          "unit_id": "p5s3",
+          "kind": "question",
+          "supported": true,
+          "citations": [],
+          "reason": "Question does not require factual evidence."
+        }
+      ],
+      "support": [
+        {
+          "post_index": 0,
+          "supported": false,
+          "reason": "Units p1s1 and p1s2 contain unsupported factual claims."
+        },
+        {
+          "post_index": 1,
+          "supported": true,
+          "reason": "All units in this post are supported by evidence."
+        },
+        {
+          "post_index": 2,
+          "supported": true,
+          "reason": "All units in this post are supported by evidence."
+        },
+        {
+          "post_index": 3,
+          "supported": true,
+          "reason": "All units in this post are supported by evidence."
+        },
+        {
+          "post_index": 4,
+          "supported": true,
+          "reason": "All units in this post are supported (including the question)."
+        }
+      ],
+      "reasons": [
+        "Post 1 contains unsupported factual claims; therefore the overall piece does not meet accuracy requirements.",
+        "Total score 13 is below the required minimum of 16.",
+        "At least one post is unsupported, so approval is false."
+      ]
+    }
+  },
+  {
+    "slot": "thread_3",
+    "evidence": {
+      "kb:access-control:name": "Missing access control",
+      "kb:access-control:description": "A sensitive function without adequate authorization can be called by an unintended account.",
+      "kb:access-control:root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+      "kb:access-control:mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation.",
+      "kb:access-control:fact:scope": "Different privileged operations can require different roles.",
+      "kb:access-control:fact:lifecycle": "Role assignment and removal are themselves permission-sensitive operations.",
+      "kb:access-control:fact:review": "Access control design includes deciding who may grant and revoke permissions."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "A privileged function that lacks proper authorization can be invoked by an unintended account.",
+          "evidence_ids": [
+            "kb:access-control:description"
+          ]
+        },
+        {
+          "text": "The root cause is missing or inconsistently applied permission checks across privileged entry points.",
+          "evidence_ids": [
+            "kb:access-control:root_cause"
+          ]
+        },
+        {
+          "text": "Various privileged operations may need distinct roles, so a single missing check can affect multiple functions.",
+          "evidence_ids": [
+            "kb:access-control:fact:scope"
+          ]
+        },
+        {
+          "text": "Mitigate by defining explicit roles and testing unauthorized calls for each privileged operation.",
+          "evidence_ids": [
+            "kb:access-control:mitigation"
+          ]
+        },
+        {
+          "text": "How do you plan to confirm that role assignment and revocation themselves require proper permission and that only authorized accounts can grant or remove roles?",
+          "evidence_ids": [
+            "kb:access-control:fact:lifecycle",
+            "kb:access-control:fact:review"
+          ]
+        }
+      ]
+    },
+    "judgment": {
+      "approve": false,
+      "scores": {
+        "accuracy": 2,
+        "usefulness": 4,
+        "clarity": 4,
+        "brand_fit": 4
+      },
+      "claims": [
+        {
+          "unit_id": "p1s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:access-control:description",
+              "quote": "A sensitive function without adequate authorization can be called by an unintended account."
+            }
+          ],
+          "reason": "Statement matches evidence description of unauthorized invocation."
+        },
+        {
+          "unit_id": "p2s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:access-control:root_cause",
+              "quote": "Permissions are missing or applied inconsistently across privileged entry points."
+            }
+          ],
+          "reason": "Root\u2011cause wording aligns with source."
+        },
+        {
+          "unit_id": "p3s1",
+          "kind": "factual",
+          "supported": false,
+          "citations": [
+            {
+              "evidence_id": "kb:access-control:fact:scope",
+              "quote": "Different privileged operations can require different roles."
+            }
+          ],
+          "reason": "Source only states operations may need distinct roles; it does not claim a single missing check can affect multiple functions."
+        },
+        {
+          "unit_id": "p4s1",
+          "kind": "factual",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:access-control:mitigation",
+              "quote": "Define roles explicitly and test unauthorized calls for every privileged operation."
+            }
+          ],
+          "reason": "Mitigation matches the provided guidance."
+        },
+        {
+          "unit_id": "p5s1",
+          "kind": "question",
+          "supported": true,
+          "citations": [
+            {
+              "evidence_id": "kb:access-control:fact:lifecycle",
+              "quote": "Role assignment and removal are themselves permission-sensitive operations."
+            },
+            {
+              "evidence_id": "kb:access-control:fact:review",
+              "quote": "Access control design includes deciding who may grant and revoke permissions."
+            }
+          ],
+          "reason": "Question is grounded in two factual statements about role lifecycle and review."
+        }
+      ],
+      "support": [
+        {
+          "post_index": 0,
+          "supported": true,
+          "reason": "Factually supported by description evidence."
+        },
+        {
+          "post_index": 1,
+          "supported": true,
+          "reason": "Root\u2011cause aligns with source."
+        },
+        {
+          "post_index": 2,
+          "supported": false,
+          "reason": "Overstates impact beyond evidence."
+        },
+        {
+          "post_index": 3,
+          "supported": true,
+          "reason": "Mitigation directly quoted from source."
+        },
+        {
+          "post_index": 4,
+          "supported": true,
+          "reason": "Question premise is verified by two evidence items."
+        }
+      ],
+      "reasons": [
+        "Post\u202f0 is accurate and supported.",
+        "Post\u202f1 is accurate and supported.",
+        "Post\u202f2 contains an unsupported overstatement.",
+        "Post\u202f3 is accurate and supported.",
+        "Post\u202f4 is a grounded question."
+      ]
+    }
+  }
+]

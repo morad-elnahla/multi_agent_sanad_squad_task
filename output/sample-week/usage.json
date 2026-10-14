@@ -1,0 +1,270 @@
+{
+  "schema_version": "1.0",
+  "kind": "usage",
+  "data": [
+    {
+      "slot": "thread_1",
+      "role": "research",
+      "agent": "research",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_2",
+      "role": "research",
+      "agent": "research",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_3",
+      "role": "research",
+      "agent": "research",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_1",
+      "role": "writer",
+      "agent": "writer:tech-thread",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_2",
+      "role": "writer",
+      "agent": "writer:tech-thread",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_3",
+      "role": "writer",
+      "agent": "writer:tech-thread",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_1",
+      "role": "reviewer",
+      "agent": "reviewer",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_2",
+      "role": "reviewer",
+      "agent": "reviewer",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_3",
+      "role": "reviewer",
+      "agent": "reviewer",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_1",
+      "role": "visual",
+      "agent": "visual",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_2",
+      "role": "visual",
+      "agent": "visual",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "thread_3",
+      "role": "visual",
+      "agent": "visual",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_1",
+      "role": "research",
+      "agent": "research",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_2",
+      "role": "research",
+      "agent": "research",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_3",
+      "role": "research",
+      "agent": "research",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_1",
+      "role": "writer",
+      "agent": "writer:marketing",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_2",
+      "role": "writer",
+      "agent": "writer:marketing",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_3",
+      "role": "writer",
+      "agent": "writer:marketing",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_1",
+      "role": "reviewer",
+      "agent": "reviewer",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_2",
+      "role": "reviewer",
+      "agent": "reviewer",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_3",
+      "role": "reviewer",
+      "agent": "reviewer",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_1",
+      "role": "visual",
+      "agent": "visual",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_2",
+      "role": "visual",
+      "agent": "visual",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    },
+    {
+      "slot": "marketing_3",
+      "role": "visual",
+      "agent": "visual",
+      "model": "extractive-demo-fixture",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0,
+      "status": "fixture",
+      "latency_seconds": 0
+    }
+  ]
+}

@@ -1,0 +1,377 @@
+[
+  {
+    "id": "reentrancy",
+    "name": "Reentrancy",
+    "severity": "High",
+    "category": "External calls",
+    "description": "An external call can let another contract re-enter before the caller has finished updating its state.",
+    "root_cause": "An invariant is temporarily broken across an external call.",
+    "mitigation": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too.",
+    "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "A contract interaction transfers control to the called contract, which may call back.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      },
+      {
+        "id": "scope",
+        "text": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      },
+      {
+        "id": "pattern",
+        "text": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      }
+    ]
+  },
+  {
+    "id": "oracle-manipulation",
+    "name": "Oracle manipulation",
+    "severity": "High",
+    "category": "Oracle",
+    "description": "A manipulable price input can distort collateral valuation or other price-dependent decisions.",
+    "root_cause": "Contract logic trusts a price without adequate manipulation resistance.",
+    "mitigation": "Assess feed design, liquidity assumptions, freshness checks and fallback behavior together.",
+    "source_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "A price taken from a low-liquidity pool can be influenced by trades against that pool.",
+        "source_url": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles"
+      },
+      {
+        "id": "design",
+        "text": "A time-weighted price averages observations over an interval; its manipulation resistance depends on liquidity and the averaging period.",
+        "source_url": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles"
+      },
+      {
+        "id": "scope",
+        "text": "An oracle response can be present but too old for its intended use; consumers should check its timestamp.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-086/"
+      }
+    ]
+  },
+  {
+    "id": "access-control",
+    "name": "Missing access control",
+    "severity": "Critical",
+    "category": "Authorization",
+    "description": "A sensitive function without adequate authorization can be called by an unintended account.",
+    "root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+    "mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation.",
+    "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "scope",
+        "text": "Different privileged operations can require different roles.",
+        "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+      },
+      {
+        "id": "lifecycle",
+        "text": "Role assignment and removal are themselves permission-sensitive operations.",
+        "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+      },
+      {
+        "id": "review",
+        "text": "Access control design includes deciding who may grant and revoke permissions.",
+        "source_url": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+      }
+    ]
+  },
+  {
+    "id": "unchecked-return",
+    "name": "Unchecked external call result",
+    "severity": "Medium",
+    "category": "External calls",
+    "description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+    "root_cause": "The caller does not check the success flag returned by a low-level call.",
+    "mitigation": "Check call outcomes and define explicit failure handling.",
+    "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "Low-level calls expose a success flag that the caller can inspect.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+      },
+      {
+        "id": "consequence",
+        "text": "If failure is ignored, subsequent logic may rely on an operation that did not complete.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+      },
+      {
+        "id": "review",
+        "text": "The failure path needs explicit handling, not only a check of the successful path.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+      }
+    ]
+  },
+  {
+    "id": "tx-origin",
+    "name": "tx.origin authorization",
+    "severity": "High",
+    "category": "Authorization",
+    "description": "Authorization based on tx.origin can be abused through a malicious intermediary contract.",
+    "root_cause": "Authorization checks the transaction origin instead of the intended caller identity.",
+    "mitigation": "Use an appropriate caller-based authorization design and test intermediary call paths.",
+    "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "An intermediary contract can call a target within a transaction initiated by a victim.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+      },
+      {
+        "id": "distinction",
+        "text": "The transaction origin and the immediate caller can be different addresses.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+      },
+      {
+        "id": "review",
+        "text": "Caller-based authorization should be evaluated on intermediary call paths, not only direct calls.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+      }
+    ]
+  },
+  {
+    "id": "unbounded-loop",
+    "name": "Unbounded iteration",
+    "severity": "Medium",
+    "category": "Availability",
+    "description": "A loop over growing on-chain data can eventually exceed the transaction gas limit.",
+    "root_cause": "The required work grows without a practical bound.",
+    "mitigation": "Bound work per transaction or use a carefully designed batching approach.",
+    "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "A loop whose work depends on storage growth may become too expensive to execute.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      },
+      {
+        "id": "impact",
+        "text": "Reaching the gas limit can stall a required contract operation.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      },
+      {
+        "id": "scope",
+        "text": "A loop is not inherently a vulnerability; the relevant issue is whether required work can grow beyond feasible gas.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      }
+    ]
+  },
+  {
+    "id": "arithmetic",
+    "name": "Unchecked arithmetic",
+    "severity": "High",
+    "category": "Arithmetic",
+    "description": "Arithmetic in unchecked blocks can wrap when a value exceeds its integer range.",
+    "root_cause": "A calculation assumes bounds that are not enforced.",
+    "mitigation": "Keep checked arithmetic where possible and test numeric boundary conditions.",
+    "source_url": "https://docs.soliditylang.org/en/latest/control-structures.html#checked-or-unchecked-arithmetic",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "version",
+        "text": "Solidity 0.8 and later check arithmetic overflow and underflow by default.",
+        "source_url": "https://docs.soliditylang.org/en/latest/control-structures.html#checked-or-unchecked-arithmetic"
+      },
+      {
+        "id": "scope",
+        "text": "An unchecked block disables these arithmetic checks within its scope.",
+        "source_url": "https://docs.soliditylang.org/en/latest/control-structures.html#checked-or-unchecked-arithmetic"
+      }
+    ]
+  },
+  {
+    "id": "rounding",
+    "name": "Rounding loss",
+    "severity": "Medium",
+    "category": "Arithmetic",
+    "description": "Integer division truncates fractional results and can bias accounting.",
+    "root_cause": "The design ignores how repeated rounding affects balances or shares.",
+    "mitigation": "Specify rounding direction and test small values and repeated operations.",
+    "source_url": "https://docs.soliditylang.org/en/latest/types.html#division",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "Integer division in Solidity rounds toward zero.",
+        "source_url": "https://docs.soliditylang.org/en/latest/types.html#division"
+      },
+      {
+        "id": "scope",
+        "text": "An integer result does not retain a fractional remainder.",
+        "source_url": "https://docs.soliditylang.org/en/latest/types.html#division"
+      }
+    ]
+  },
+  {
+    "id": "front-running",
+    "name": "Transaction ordering dependence",
+    "severity": "High",
+    "category": "Ordering",
+    "description": "A pending transaction may be observed and preceded by another transaction that changes its outcome.",
+    "root_cause": "The design assumes a favorable transaction order.",
+    "mitigation": "Assess ordering assumptions and use application-appropriate limits or commit-reveal designs.",
+    "source_url": "https://scs.owasp.org/SCWE/SCSVS-ARCH/SCWE-052/",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "Visible pending transaction data can influence transactions submitted by other participants.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-ARCH/SCWE-052/"
+      },
+      {
+        "id": "scope",
+        "text": "A transaction-dependent outcome should be assessed under an unfavorable ordering.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-ARCH/SCWE-052/"
+      }
+    ]
+  },
+  {
+    "id": "weak-randomness",
+    "name": "Predictable randomness",
+    "severity": "High",
+    "category": "Randomness",
+    "description": "Public or influenceable chain values can make an application outcome predictable or biased.",
+    "root_cause": "The design treats an observable or influenceable input as secure randomness.",
+    "mitigation": "Use a randomness design appropriate to the threat model and test timing assumptions.",
+    "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "visibility",
+        "text": "On-chain state is publicly visible, including state variables declared private.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      },
+      {
+        "id": "mechanism",
+        "text": "Block data can be subject to block-builder influence, which matters when it determines an outcome.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      }
+    ]
+  },
+  {
+    "id": "signature-replay",
+    "name": "Signature replay",
+    "severity": "High",
+    "category": "Cryptography",
+    "description": "A valid signature may be reused if the verification scheme does not bind and consume its intended context.",
+    "root_cause": "The scheme omits nonce tracking or adequate domain separation.",
+    "mitigation": "Bind signatures to the intended domain and action, and consume nonces safely.",
+    "source_url": "https://docs.openzeppelin.com/contracts/5.x/api/utils/cryptography",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "domain",
+        "text": "Typed-data domain separation can bind signatures to a chain and verifying contract.",
+        "source_url": "https://docs.openzeppelin.com/contracts/5.x/api/utils/cryptography"
+      },
+      {
+        "id": "scope",
+        "text": "Signature recovery identifies a signer; applications still need replay-protection logic.",
+        "source_url": "https://docs.openzeppelin.com/contracts/5.x/api/utils/cryptography"
+      }
+    ]
+  },
+  {
+    "id": "delegatecall",
+    "name": "Untrusted delegatecall target",
+    "severity": "Critical",
+    "category": "External calls",
+    "description": "Delegatecall executes target code in the calling contract storage context.",
+    "root_cause": "An untrusted party can influence the target code or its selection.",
+    "mitigation": "Restrict target selection and review both authorization and storage assumptions.",
+    "source_url": "https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html#delegatecall-and-libraries",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "context",
+        "text": "Delegatecall uses code at another address with the calling contract storage and balance.",
+        "source_url": "https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html#delegatecall-and-libraries"
+      },
+      {
+        "id": "identity",
+        "text": "Within a delegatecall, the original message sender and value are preserved.",
+        "source_url": "https://docs.soliditylang.org/en/latest/introduction-to-smart-contracts.html#delegatecall-and-libraries"
+      }
+    ]
+  },
+  {
+    "id": "storage-collision",
+    "name": "Upgrade storage collision",
+    "severity": "High",
+    "category": "Upgradeability",
+    "description": "An incompatible implementation layout can interpret existing proxy storage incorrectly.",
+    "root_cause": "An upgrade changes the meaning or ordering of stored fields without preserving compatibility.",
+    "mitigation": "Validate storage compatibility before approving an implementation upgrade.",
+    "source_url": "https://docs.openzeppelin.com/upgrades-plugins/writing-upgradeable",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "layout",
+        "text": "Changing the order or types of stored variables can break compatibility during an upgrade.",
+        "source_url": "https://docs.openzeppelin.com/upgrades-plugins/writing-upgradeable"
+      },
+      {
+        "id": "review",
+        "text": "Storage-layout compatibility must be considered when adding a new implementation.",
+        "source_url": "https://docs.openzeppelin.com/upgrades-plugins/writing-upgradeable"
+      }
+    ]
+  },
+  {
+    "id": "initializer",
+    "name": "Unprotected initialization",
+    "severity": "Critical",
+    "category": "Upgradeability",
+    "description": "An exposed initializer can let an unintended account set privileged state.",
+    "root_cause": "Initialization is not properly restricted or protected against repeated use.",
+    "mitigation": "Protect initialization and verify deployment and upgrade initialization paths.",
+    "source_url": "https://docs.openzeppelin.com/upgrades-plugins/writing-upgradeable",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "Upgradeable contracts use initializer functions for setup that a constructor would otherwise perform.",
+        "source_url": "https://docs.openzeppelin.com/upgrades-plugins/writing-upgradeable"
+      },
+      {
+        "id": "lifecycle",
+        "text": "Initializer protection prevents the setup function from being executed again.",
+        "source_url": "https://docs.openzeppelin.com/upgrades-plugins/writing-upgradeable"
+      }
+    ]
+  },
+  {
+    "id": "stale-oracle",
+    "name": "Stale oracle data",
+    "severity": "High",
+    "category": "Oracle",
+    "description": "An old oracle observation can cause a contract to use an outdated price.",
+    "root_cause": "Consumers omit a freshness policy or fail to enforce it.",
+    "mitigation": "Validate observation age and define safe behavior when data becomes stale.",
+    "source_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-086/",
+    "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+    "facts": [
+      {
+        "id": "mechanism",
+        "text": "Oracle consumers should validate the timestamp of an observation against a freshness policy.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-086/"
+      },
+      {
+        "id": "scope",
+        "text": "A price response can be present but too old for its intended use.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-086/"
+      }
+    ]
+  }
+]

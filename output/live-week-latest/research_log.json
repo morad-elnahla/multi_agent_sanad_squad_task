@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.1",
+  "kind": "research_log",
+  "data": [
+    {
+      "slot_id": "thread_1",
+      "status": "shipped",
+      "research": {
+        "kb_id": "reentrancy",
+        "source": "kb:reentrancy",
+        "background_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "The candidate directly matches the requested focus on reentrancy and includes detailed description, root cause, mitigation, and supporting facts relevant to the topic.",
+        "evidence": {
+          "kb:reentrancy:name": "Reentrancy",
+          "kb:reentrancy:description": "An external call can let another contract re-enter before the caller has finished updating its state.",
+          "kb:reentrancy:root_cause": "An invariant is temporarily broken across an external call.",
+          "kb:reentrancy:mitigation": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too.",
+          "kb:reentrancy:fact:mechanism": "A contract interaction transfers control to the called contract, which may call back.",
+          "kb:reentrancy:fact:scope": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths.",
+          "kb:reentrancy:fact:pattern": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions."
+        },
+        "provenance": {
+          "kb:reentrancy:name": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:reentrancy:description": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:reentrancy:root_cause": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:reentrancy:mitigation": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:reentrancy:fact:mechanism": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:reentrancy:fact:scope": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:reentrancy:fact:pattern": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "thread_2",
+      "status": "dropped",
+      "research": {
+        "kb_id": "unchecked-return",
+        "source": "kb:unchecked-return",
+        "background_url": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "The candidate directly matches the provided security issue about ignoring low‑level call results, making it the only relevant knowledge base entry.",
+        "evidence": {
+          "kb:unchecked-return:name": "Unchecked external call result",
+          "kb:unchecked-return:description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+          "kb:unchecked-return:root_cause": "The caller does not check the success flag returned by a low-level call.",
+          "kb:unchecked-return:mitigation": "Check call outcomes and define explicit failure handling.",
+          "kb:unchecked-return:fact:mechanism": "Low-level calls expose a success flag that the caller can inspect.",
+          "kb:unchecked-return:fact:consequence": "If failure is ignored, subsequent logic may rely on an operation that did not complete.",
+          "kb:unchecked-return:fact:review": "The failure path needs explicit handling, not only a check of the successful path."
+        },
+        "provenance": {
+          "kb:unchecked-return:name": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+          "kb:unchecked-return:description": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+          "kb:unchecked-return:root_cause": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+          "kb:unchecked-return:mitigation": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+          "kb:unchecked-return:fact:mechanism": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+          "kb:unchecked-return:fact:consequence": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/",
+          "kb:unchecked-return:fact:review": "https://scs.owasp.org/SCWE/SCSVS-CODE/SCWE-048/"
+        }
+      },
+      "reasons": [
+        "Post 2: non-ASCII text is outside supported X policy",
+        "Post 3: non-ASCII text is outside supported X policy",
+        "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported.",
+        "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+        "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+        "Post 4 includes an unsupported claim about state corruption not supported by evidence.",
+        "Post 2: Contains non-ASCII hyphen character violating ASCII-only policy.",
+        "Post 3: Contains non-ASCII hyphen character violating ASCII-only policy.",
+        "Post 4: Includes an unsupported claim about state corruption not backed by evidence."
+      ]
+    },
+    {
+      "slot_id": "thread_3",
+      "status": "shipped",
+      "research": {
+        "kb_id": "access-control",
+        "source": "kb:access-control",
+        "background_url": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Matches the requested focus on access control and provides relevant details about missing authorization.",
+        "evidence": {
+          "kb:access-control:name": "Missing access control",
+          "kb:access-control:description": "A sensitive function without adequate authorization can be called by an unintended account.",
+          "kb:access-control:root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+          "kb:access-control:mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation.",
+          "kb:access-control:fact:scope": "Different privileged operations can require different roles.",
+          "kb:access-control:fact:lifecycle": "Role assignment and removal are themselves permission-sensitive operations.",
+          "kb:access-control:fact:review": "Access control design includes deciding who may grant and revoke permissions."
+        },
+        "provenance": {
+          "kb:access-control:name": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+          "kb:access-control:description": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+          "kb:access-control:root_cause": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+          "kb:access-control:mitigation": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+          "kb:access-control:fact:scope": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+          "kb:access-control:fact:lifecycle": "https://docs.openzeppelin.com/contracts/5.x/access-control",
+          "kb:access-control:fact:review": "https://docs.openzeppelin.com/contracts/5.x/access-control"
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_1",
+      "status": "shipped",
+      "research": {
+        "kb_id": "oracle-manipulation",
+        "source": "kb:oracle-manipulation",
+        "background_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Matches the requested focus on oracle manipulation",
+        "evidence": {
+          "kb:oracle-manipulation:name": "Oracle manipulation",
+          "kb:oracle-manipulation:description": "A manipulable price input can distort collateral valuation or other price-dependent decisions.",
+          "kb:oracle-manipulation:root_cause": "Contract logic trusts a price without adequate manipulation resistance.",
+          "kb:oracle-manipulation:mitigation": "Assess feed design, liquidity assumptions, freshness checks and fallback behavior together.",
+          "kb:oracle-manipulation:fact:mechanism": "A price taken from a low-liquidity pool can be influenced by trades against that pool.",
+          "kb:oracle-manipulation:fact:design": "A time-weighted price averages observations over an interval; its manipulation resistance depends on liquidity and the averaging period.",
+          "kb:oracle-manipulation:fact:scope": "An oracle response can be present but too old for its intended use; consumers should check its timestamp."
+        },
+        "provenance": {
+          "kb:oracle-manipulation:name": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+          "kb:oracle-manipulation:description": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+          "kb:oracle-manipulation:root_cause": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+          "kb:oracle-manipulation:mitigation": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+          "kb:oracle-manipulation:fact:mechanism": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles",
+          "kb:oracle-manipulation:fact:design": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles",
+          "kb:oracle-manipulation:fact:scope": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-086/"
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_2",
+      "status": "shipped",
+      "research": {
+        "kb_id": "tx-origin",
+        "source": "kb:tx-origin",
+        "background_url": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "It is the sole candidate and addresses a high‑severity authorization issue (tx.origin misuse) requiring mitigation.",
+        "evidence": {
+          "kb:tx-origin:name": "tx.origin authorization",
+          "kb:tx-origin:description": "Authorization based on tx.origin can be abused through a malicious intermediary contract.",
+          "kb:tx-origin:root_cause": "Authorization checks the transaction origin instead of the intended caller identity.",
+          "kb:tx-origin:mitigation": "Use an appropriate caller-based authorization design and test intermediary call paths.",
+          "kb:tx-origin:fact:mechanism": "An intermediary contract can call a target within a transaction initiated by a victim.",
+          "kb:tx-origin:fact:distinction": "The transaction origin and the immediate caller can be different addresses.",
+          "kb:tx-origin:fact:review": "Caller-based authorization should be evaluated on intermediary call paths, not only direct calls."
+        },
+        "provenance": {
+          "kb:tx-origin:name": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+          "kb:tx-origin:description": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+          "kb:tx-origin:root_cause": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+          "kb:tx-origin:mitigation": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+          "kb:tx-origin:fact:mechanism": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+          "kb:tx-origin:fact:distinction": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/",
+          "kb:tx-origin:fact:review": "https://scs.owasp.org/SCWE/SCSVS-AUTH/SCWE-018/"
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_3",
+      "status": "shipped",
+      "research": {
+        "kb_id": "unbounded-loop",
+        "source": "kb:unbounded-loop",
+        "background_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "It directly addresses the unbounded iteration issue described, matching the provided candidate's focus and details.",
+        "evidence": {
+          "kb:unbounded-loop:name": "Unbounded iteration",
+          "kb:unbounded-loop:description": "A loop over growing on-chain data can eventually exceed the transaction gas limit.",
+          "kb:unbounded-loop:root_cause": "The required work grows without a practical bound.",
+          "kb:unbounded-loop:mitigation": "Bound work per transaction or use a carefully designed batching approach.",
+          "kb:unbounded-loop:fact:mechanism": "A loop whose work depends on storage growth may become too expensive to execute.",
+          "kb:unbounded-loop:fact:impact": "Reaching the gas limit can stall a required contract operation.",
+          "kb:unbounded-loop:fact:scope": "A loop is not inherently a vulnerability; the relevant issue is whether required work can grow beyond feasible gas."
+        },
+        "provenance": {
+          "kb:unbounded-loop:name": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:unbounded-loop:description": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:unbounded-loop:root_cause": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:unbounded-loop:mitigation": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:unbounded-loop:fact:mechanism": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:unbounded-loop:fact:impact": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+          "kb:unbounded-loop:fact:scope": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+        }
+      },
+      "reasons": []
+    }
+  ]
+}

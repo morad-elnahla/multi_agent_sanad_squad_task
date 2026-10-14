@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.1",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "marketing_1",
+      "type": "marketing",
+      "focus": "oracle manipulation"
+    },
+    "candidates": [
+      {
+        "id": "oracle-manipulation",
+        "name": "Oracle manipulation",
+        "severity": "High",
+        "category": "Oracle",
+        "description": "A manipulable price input can distort collateral valuation or other price-dependent decisions.",
+        "root_cause": "Contract logic trusts a price without adequate manipulation resistance.",
+        "mitigation": "Assess feed design, liquidity assumptions, freshness checks and fallback behavior together.",
+        "source_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+        "facts": [
+          {
+            "id": "mechanism",
+            "text": "A price taken from a low-liquidity pool can be influenced by trades against that pool.",
+            "source_url": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles"
+          },
+          {
+            "id": "design",
+            "text": "A time-weighted price averages observations over an interval; its manipulation resistance depends on liquidity and the averaging period.",
+            "source_url": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles"
+          },
+          {
+            "id": "scope",
+            "text": "An oracle response can be present but too old for its intended use; consumers should check its timestamp.",
+            "source_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-086/"
+          }
+        ]
+      }
+    ],
+    "topic": "Oracle manipulation",
+    "research": {
+      "kb_id": "oracle-manipulation",
+      "source": "kb:oracle-manipulation",
+      "background_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "Matches the requested focus on oracle manipulation",
+      "evidence": {
+        "kb:oracle-manipulation:name": "Oracle manipulation",
+        "kb:oracle-manipulation:description": "A manipulable price input can distort collateral valuation or other price-dependent decisions.",
+        "kb:oracle-manipulation:root_cause": "Contract logic trusts a price without adequate manipulation resistance.",
+        "kb:oracle-manipulation:mitigation": "Assess feed design, liquidity assumptions, freshness checks and fallback behavior together.",
+        "kb:oracle-manipulation:fact:mechanism": "A price taken from a low-liquidity pool can be influenced by trades against that pool.",
+        "kb:oracle-manipulation:fact:design": "A time-weighted price averages observations over an interval; its manipulation resistance depends on liquidity and the averaging period.",
+        "kb:oracle-manipulation:fact:scope": "An oracle response can be present but too old for its intended use; consumers should check its timestamp."
+      },
+      "provenance": {
+        "kb:oracle-manipulation:name": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+        "kb:oracle-manipulation:description": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+        "kb:oracle-manipulation:root_cause": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+        "kb:oracle-manipulation:mitigation": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+        "kb:oracle-manipulation:fact:mechanism": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles",
+        "kb:oracle-manipulation:fact:design": "https://developers.uniswap.org/docs/protocols/v2/concepts/oracles",
+        "kb:oracle-manipulation:fact:scope": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-086/"
+      }
+    },
+    "evidence": {
+      "kb:oracle-manipulation:name": "Oracle manipulation",
+      "kb:oracle-manipulation:description": "A manipulable price input can distort collateral valuation or other price-dependent decisions.",
+      "kb:oracle-manipulation:root_cause": "Contract logic trusts a price without adequate manipulation resistance.",
+      "kb:oracle-manipulation:mitigation": "Assess feed design, liquidity assumptions, freshness checks and fallback behavior together.",
+      "kb:oracle-manipulation:fact:mechanism": "A price taken from a low-liquidity pool can be influenced by trades against that pool.",
+      "kb:oracle-manipulation:fact:design": "A time-weighted price averages observations over an interval; its manipulation resistance depends on liquidity and the averaging period.",
+      "kb:oracle-manipulation:fact:scope": "An oracle response can be present but too old for its intended use; consumers should check its timestamp."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "If your contract trusts a price feed without resistance, a low-liquidity pool can be manipulated and stale data may be used. Have you verified feed liquidity and timestamps? DM to discuss a security review.",
+          "evidence_ids": [
+            "kb:oracle-manipulation:root_cause",
+            "kb:oracle-manipulation:fact:mechanism",
+            "kb:oracle-manipulation:fact:scope"
+          ]
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "If your contract trusts a price feed without resistance, a low-liquidity pool can be manipulated and stale data may be used. Have you verified feed liquidity and timestamps? DM to discuss a security review.",
+              "evidence_ids": [
+                "kb:oracle-manipulation:root_cause",
+                "kb:oracle-manipulation:fact:mechanism",
+                "kb:oracle-manipulation:fact:scope"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": true,
+        "scores": {
+          "accuracy": 5,
+          "usefulness": 5,
+          "clarity": 5,
+          "brand_fit": 5
+        },
+        "total": 20,
+        "reasons": [],
+        "hard_errors": [],
+        "judgment": {
+          "approve": true,
+          "scores": {
+            "accuracy": 5,
+            "usefulness": 5,
+            "clarity": 5,
+            "brand_fit": 5
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:oracle-manipulation:root_cause",
+                  "quote": "Contract logic trusts a price without adequate manipulation resistance."
+                },
+                {
+                  "evidence_id": "kb:oracle-manipulation:fact:mechanism",
+                  "quote": "A price taken from a low-liquidity pool can be influenced by trades against that pool."
+                },
+                {
+                  "evidence_id": "kb:oracle-manipulation:fact:scope",
+                  "quote": "An oracle response can be present but too old for its intended use; consumers should check its timestamp."
+                }
+              ],
+              "reason": "Statement correctly combines root cause, manipulation risk, and stale data risk, all directly supported by evidence."
+            },
+            {
+              "unit_id": "p1s2",
+              "kind": "question",
+              "supported": true,
+              "citations": [],
+              "reason": "Prompt asking verification; no factual claim to ground."
+            },
+            {
+              "unit_id": "p1s3",
+              "kind": "cta",
+              "supported": true,
+              "citations": [],
+              "reason": "CTA matches an approved phrase in the brand policy."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "All units are grounded, CTA approved, and brand guidelines respected."
+            }
+          ],
+          "reasons": [
+            "Draft contains no spelling or spacing errors, follows brand tone, and all factual assertions are directly supported by supplied evidence."
+          ]
+        },
+        "scope_warnings": [],
+        "attempt": 1
+      }
+    ],
+    "attempt": 1,
+    "accepted": true,
+    "status": "shipped",
+    "reasons": [],
+    "visual": {
+      "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: Oracle manipulation. Two abstract blocks separated by a visible gap. One abstract shield acts as an editorial motif, not a security guarantee. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+      "alt_text": "Conceptual illustration about Oracle manipulation: Two abstract blocks separated by a visible gap. One abstract shield acts as an editorial motif, not a security guarantee.",
+      "artifact_type": "written_image_spec",
+      "width": 1600,
+      "height": 900,
+      "source_ids": [
+        "kb:oracle-manipulation:root_cause"
+      ],
+      "concept": {
+        "source_id": "kb:oracle-manipulation:root_cause",
+        "layout": "barrier",
+        "symbol": "shield"
+      },
+      "checks": {
+        "valid_source": true,
+        "approved_layout": true,
+        "approved_symbol": true,
+        "text_overlays": false
+      },
+      "evidence_context": "Contract logic trusts a price without adequate manipulation resistance."
+    },
+    "visual_path": "visuals/marketing_1.json"
+  }
+}

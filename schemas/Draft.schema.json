@@ -1,0 +1,43 @@
+{
+  "$defs": {
+    "Post": {
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "text",
+        "evidence_ids"
+      ],
+      "title": "Post",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "posts": {
+      "items": {
+        "$ref": "#/$defs/Post"
+      },
+      "minItems": 1,
+      "title": "Posts",
+      "type": "array"
+    }
+  },
+  "required": [
+    "posts"
+  ],
+  "title": "Draft",
+  "type": "object"
+}

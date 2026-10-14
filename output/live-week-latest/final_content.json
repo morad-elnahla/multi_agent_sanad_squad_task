@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.1",
+  "kind": "final_content",
+  "data": [
+    {
+      "slot_id": "thread_1",
+      "type": "tech-thread",
+      "topic": "Reentrancy",
+      "posts": [
+        {
+          "text": "Reentrancy lets an attacker slip back into a contract before its state finishes updating.",
+          "evidence_ids": [
+            "kb:reentrancy:description"
+          ]
+        },
+        {
+          "text": "An external call transfers control to the called contract, which may call back into the original function.",
+          "evidence_ids": [
+            "kb:reentrancy:fact:mechanism"
+          ]
+        },
+        {
+          "text": "Reentrancy is not limited to Ether transfers; any call to another contract can create a re-entry path.",
+          "evidence_ids": [
+            "kb:reentrancy:fact:scope"
+          ]
+        },
+        {
+          "text": "Mitigate by updating state before external calls and, if needed, adding a reentrancy guard; also examine cross-function paths.",
+          "evidence_ids": [
+            "kb:reentrancy:mitigation",
+            "kb:reentrancy:fact:pattern"
+          ]
+        },
+        {
+          "text": "Can you verify that every external interaction in your code follows the checks-effects-interactions order?",
+          "evidence_ids": [
+            "kb:reentrancy:fact:pattern"
+          ]
+        }
+      ],
+      "image_spec": "visuals/thread_1.json"
+    },
+    {
+      "slot_id": "thread_3",
+      "type": "tech-thread",
+      "topic": "Missing access control",
+      "posts": [
+        {
+          "text": "Missing access control lets an unintended account call privileged functions.",
+          "evidence_ids": [
+            "kb:access-control:description"
+          ]
+        },
+        {
+          "text": "Permissions are missing or applied inconsistently across privileged entry points, creating the gap.",
+          "evidence_ids": [
+            "kb:access-control:root_cause"
+          ]
+        },
+        {
+          "text": "Different privileged operations can require different roles.",
+          "evidence_ids": [
+            "kb:access-control:fact:scope"
+          ]
+        },
+        {
+          "text": "Mitigate by defining roles explicitly and testing unauthorized calls for every privileged operation.",
+          "evidence_ids": [
+            "kb:access-control:mitigation"
+          ]
+        },
+        {
+          "text": "How will you verify that role assignment and removal, which are permission-sensitive operations, are correctly restricted?",
+          "evidence_ids": [
+            "kb:access-control:fact:lifecycle",
+            "kb:access-control:fact:review"
+          ]
+        }
+      ],
+      "image_spec": "visuals/thread_3.json"
+    },
+    {
+      "slot_id": "marketing_1",
+      "type": "marketing",
+      "topic": "Oracle manipulation",
+      "posts": [
+        {
+          "text": "If your contract trusts a price feed without resistance, a low-liquidity pool can be manipulated and stale data may be used. Have you verified feed liquidity and timestamps? DM to discuss a security review.",
+          "evidence_ids": [
+            "kb:oracle-manipulation:root_cause",
+            "kb:oracle-manipulation:fact:mechanism",
+            "kb:oracle-manipulation:fact:scope"
+          ]
+        }
+      ],
+      "image_spec": "visuals/marketing_1.json"
+    },
+    {
+      "slot_id": "marketing_2",
+      "type": "marketing",
+      "topic": "tx.origin authorization",
+      "posts": [
+        {
+          "text": "Using tx.origin for auth lets a malicious intermediary contract trick a victim into authorizing actions. Have you checked caller-based checks on all call paths? DM to discuss a security review.",
+          "evidence_ids": [
+            "kb:tx-origin:description",
+            "kb:tx-origin:fact:mechanism",
+            "kb:tx-origin:fact:distinction",
+            "kb:tx-origin:fact:review"
+          ]
+        }
+      ],
+      "image_spec": "visuals/marketing_2.json"
+    },
+    {
+      "slot_id": "marketing_3",
+      "type": "marketing",
+      "topic": "Unbounded iteration",
+      "posts": [
+        {
+          "text": "Can a loop over growing on-chain data exceed the gas limit? Unbounded iteration can grow work without bound, eventually stalling the contract. DM to discuss a security review.",
+          "evidence_ids": [
+            "kb:unbounded-loop:fact:mechanism",
+            "kb:unbounded-loop:fact:impact",
+            "kb:unbounded-loop:root_cause",
+            "kb:unbounded-loop:description"
+          ]
+        }
+      ],
+      "image_spec": "visuals/marketing_3.json"
+    }
+  ]
+}

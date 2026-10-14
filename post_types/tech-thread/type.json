@@ -1,0 +1,7 @@
+{
+  "name": "tech-thread",
+  "min_posts": 5,
+  "max_posts": 10,
+  "max_characters": 280,
+  "writer": "writer.md"
+}

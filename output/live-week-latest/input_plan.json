@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.1",
+  "kind": "plan",
+  "data": {
+    "slots": [
+      {
+        "id": "thread_1",
+        "type": "tech-thread",
+        "focus": "reentrancy"
+      },
+      {
+        "id": "thread_2",
+        "type": "tech-thread",
+        "focus": ""
+      },
+      {
+        "id": "thread_3",
+        "type": "tech-thread",
+        "focus": "access control"
+      },
+      {
+        "id": "marketing_1",
+        "type": "marketing",
+        "focus": "oracle manipulation"
+      },
+      {
+        "id": "marketing_2",
+        "type": "marketing",
+        "focus": ""
+      },
+      {
+        "id": "marketing_3",
+        "type": "marketing",
+        "focus": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "kind": "run_summary",
+  "data": {
+    "started_at": "2026-10-12T10:53:45.287721+00:00",
+    "finished_at": "2026-10-12T10:53:45.326313+00:00",
+    "mode": "demo",
+    "demo_notice": "Fixture output; no live model evaluation",
+    "pieces_requested": 6,
+    "pieces_shipped": 6,
+    "pieces_dropped": 0,
+    "dropped": [],
+    "usage": {
+      "model": "extractive-demo-fixture",
+      "calls": 24,
+      "input_tokens_recorded": 0,
+      "output_tokens_recorded": 0,
+      "token_totals_complete": true,
+      "cost_usd": 0,
+      "cost_status": "known: no model calls",
+      "rates_usd_per_million": {
+        "input": 0,
+        "output": 0
+      }
+    },
+    "export_contract": "One row per piece; blank-line-separated thread; Image is a local spec path, not rendered media."
+  }
+}

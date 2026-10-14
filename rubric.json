@@ -1,0 +1,12 @@
+{
+  "minimum_total": 16,
+  "minimum_each": 3,
+  "criteria": [
+    "accuracy",
+    "usefulness",
+    "clarity",
+    "brand_fit"
+  ],
+  "scale_max": 5,
+  "grounding_required": true
+}

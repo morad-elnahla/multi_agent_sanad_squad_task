@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "sanad-content-pipeline"
+version = "1.2.0"
+description = "Grounded, review-gated weekly content with LangGraph"
+requires-python = ">=3.11"
+dependencies = ["langgraph>=1.0,<2", "langchain-openai>=1.0,<2", "pydantic>=2.7,<3", "python-dotenv>=1,<2", "streamlit>=1.40,<2"]
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9"]
+[tool.setuptools.packages.find]
+include = ["pipeline*"]
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

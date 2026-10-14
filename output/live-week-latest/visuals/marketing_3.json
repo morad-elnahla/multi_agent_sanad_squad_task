@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.1",
+  "kind": "image_spec",
+  "data": {
+    "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: Unbounded iteration. A segmented circular path surrounding an abstract block. One curved return path provides the focal point. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+    "alt_text": "Conceptual illustration about Unbounded iteration: A segmented circular path surrounding an abstract block. One curved return path provides the focal point.",
+    "artifact_type": "written_image_spec",
+    "width": 1600,
+    "height": 900,
+    "source_ids": [
+      "kb:unbounded-loop:fact:mechanism"
+    ],
+    "concept": {
+      "source_id": "kb:unbounded-loop:fact:mechanism",
+      "layout": "cycle",
+      "symbol": "loop"
+    },
+    "checks": {
+      "valid_source": true,
+      "approved_layout": true,
+      "approved_symbol": true,
+      "text_overlays": false
+    },
+    "evidence_context": "A loop whose work depends on storage growth may become too expensive to execute."
+  }
+}

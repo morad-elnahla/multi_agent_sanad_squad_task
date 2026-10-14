@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "kind": "image_spec",
+  "data": {
+    "prompt": "Conceptual editorial illustration about Oracle manipulation. Navy background, teal and amber forms, 16:9. One interrupted flow between abstract contract blocks. No text or logos.",
+    "alt_text": "Conceptual illustration for a discussion of Oracle manipulation.",
+    "artifact_type": "written_image_spec",
+    "width": 1600,
+    "height": 900,
+    "source_ids": [
+      "kb:oracle-manipulation:name",
+      "kb:oracle-manipulation:description",
+      "kb:oracle-manipulation:root_cause",
+      "kb:oracle-manipulation:mitigation"
+    ]
+  }
+}

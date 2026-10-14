@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.1",
+  "kind": "drafts",
+  "data": [
+    {
+      "slot_id": "thread_1",
+      "status": "shipped",
+      "drafts": [
+        {
+          "attempt": 1,
+          "draft": {
+            "posts": [
+              {
+                "text": "Reentrancy lets an attacker slip back into a contract before its state finishes updating.",
+                "evidence_ids": [
+                  "kb:reentrancy:description"
+                ]
+              },
+              {
+                "text": "An external call transfers control to the called contract, which may call back into the original function.",
+                "evidence_ids": [
+                  "kb:reentrancy:fact:mechanism"
+                ]
+              },
+              {
+                "text": "Reentrancy is not limited to Ether transfers; any call to another contract can create a re-entry path.",
+                "evidence_ids": [
+                  "kb:reentrancy:fact:scope"
+                ]
+              },
+              {
+                "text": "Mitigate by updating state before external calls and, if needed, adding a reentrancy guard; also examine cross-function paths.",
+                "evidence_ids": [
+                  "kb:reentrancy:mitigation",
+                  "kb:reentrancy:fact:pattern"
+                ]
+              },
+              {
+                "text": "Can you verify that every external interaction in your code follows the checks-effects-interactions order?",
+                "evidence_ids": [
+                  "kb:reentrancy:fact:pattern"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "thread_2",
+      "status": "dropped",
+      "drafts": [
+        {
+          "attempt": 1,
+          "draft": {
+            "posts": [
+              {
+                "text": "Unchecked external call result can silently fail a contract, letting it continue as if the operation succeeded.",
+                "evidence_ids": [
+                  "kb:unchecked-return:name",
+                  "kb:unchecked-return:description"
+                ]
+              },
+              {
+                "text": "Low-level calls return a boolean success flag that the caller can inspect.",
+                "evidence_ids": [
+                  "kb:unchecked-return:fact:mechanism"
+                ]
+              },
+              {
+                "text": "The root cause is that the caller does not check the success flag returned by a low-level call.",
+                "evidence_ids": [
+                  "kb:unchecked-return:root_cause"
+                ]
+              },
+              {
+                "text": "If a failure is ignored, later logic may depend on an operation that never completed.",
+                "evidence_ids": [
+                  "kb:unchecked-return:fact:consequence"
+                ]
+              },
+              {
+                "text": "Mitigation: always check call outcomes and define explicit failure handling. Review: does the failure path have explicit handling?",
+                "evidence_ids": [
+                  "kb:unchecked-return:mitigation",
+                  "kb:unchecked-return:fact:review"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "attempt": 2,
+          "draft": {
+            "posts": [
+              {
+                "text": "Unchecked external call result can silently fail a contract, letting it continue as if the operation succeeded, exposing hidden risk.",
+                "evidence_ids": [
+                  "kb:unchecked-return:name",
+                  "kb:unchecked-return:description"
+                ]
+              },
+              {
+                "text": "Low‑level calls return a boolean success flag that the caller can inspect, providing a way to detect failures.",
+                "evidence_ids": [
+                  "kb:unchecked-return:fact:mechanism"
+                ]
+              },
+              {
+                "text": "The root cause is that the caller does not check the success flag returned by a low‑level call.",
+                "evidence_ids": [
+                  "kb:unchecked-return:root_cause"
+                ]
+              },
+              {
+                "text": "If the failure flag is ignored, subsequent logic may depend on an operation that never completed, corrupting state.",
+                "evidence_ids": [
+                  "kb:unchecked-return:fact:consequence"
+                ]
+              },
+              {
+                "text": "Mitigation: check call outcomes and define explicit failure handling. Review: does the failure path have explicit handling beyond the success branch?",
+                "evidence_ids": [
+                  "kb:unchecked-return:mitigation",
+                  "kb:unchecked-return:fact:review"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "reasons": [
+        "Post 2: non-ASCII text is outside supported X policy",
+        "Post 3: non-ASCII text is outside supported X policy",
+        "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported.",
+        "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+        "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+        "Post 4 includes an unsupported claim about state corruption not supported by evidence.",
+        "Post 2: Contains non-ASCII hyphen character violating ASCII-only policy.",
+        "Post 3: Contains non-ASCII hyphen character violating ASCII-only policy.",
+        "Post 4: Includes an unsupported claim about state corruption not backed by evidence."
+      ]
+    },
+    {
+      "slot_id": "thread_3",
+      "status": "shipped",
+      "drafts": [
+        {
+          "attempt": 1,
+          "draft": {
+            "posts": [
+              {
+                "text": "Missing access control lets anyone call privileged functions. A sensitive function without adequate authorization can be called by an unintended account.",
+                "evidence_ids": [
+                  "kb:access-control:description"
+                ]
+              },
+              {
+                "text": "The root cause is missing or inconsistently applied permissions across privileged entry points, allowing unintended callers to execute critical logic.",
+                "evidence_ids": [
+                  "kb:access-control:root_cause"
+                ]
+              },
+              {
+                "text": "Different privileged operations can require different roles, so a single missing check may expose several functions.",
+                "evidence_ids": [
+                  "kb:access-control:fact:scope"
+                ]
+              },
+              {
+                "text": "Mitigate by defining roles explicitly and testing unauthorized calls for every privileged operation.",
+                "evidence_ids": [
+                  "kb:access-control:mitigation"
+                ]
+              },
+              {
+                "text": "How will you verify that role assignment and revocation themselves are permission-sensitive and correctly restricted?",
+                "evidence_ids": [
+                  "kb:access-control:fact:lifecycle",
+                  "kb:access-control:fact:review"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "attempt": 2,
+          "draft": {
+            "posts": [
+              {
+                "text": "Missing access control lets an unintended account call privileged functions.",
+                "evidence_ids": [
+                  "kb:access-control:description"
+                ]
+              },
+              {
+                "text": "Permissions are missing or applied inconsistently across privileged entry points, creating the gap.",
+                "evidence_ids": [
+                  "kb:access-control:root_cause"
+                ]
+              },
+              {
+                "text": "Different privileged operations can require different roles.",
+                "evidence_ids": [
+                  "kb:access-control:fact:scope"
+                ]
+              },
+              {
+                "text": "Mitigate by defining roles explicitly and testing unauthorized calls for every privileged operation.",
+                "evidence_ids": [
+                  "kb:access-control:mitigation"
+                ]
+              },
+              {
+                "text": "How will you verify that role assignment and removal, which are permission-sensitive operations, are correctly restricted?",
+                "evidence_ids": [
+                  "kb:access-control:fact:lifecycle",
+                  "kb:access-control:fact:review"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_1",
+      "status": "shipped",
+      "drafts": [
+        {
+          "attempt": 1,
+          "draft": {
+            "posts": [
+              {
+                "text": "If your contract trusts a price feed without resistance, a low-liquidity pool can be manipulated and stale data may be used. Have you verified feed liquidity and timestamps? DM to discuss a security review.",
+                "evidence_ids": [
+                  "kb:oracle-manipulation:root_cause",
+                  "kb:oracle-manipulation:fact:mechanism",
+                  "kb:oracle-manipulation:fact:scope"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_2",
+      "status": "shipped",
+      "drafts": [
+        {
+          "attempt": 1,
+          "draft": {
+            "posts": [
+              {
+                "text": "Using tx.origin for auth lets a malicious intermediary contract trick a victim into authorizing actions. Have you checked caller-based checks on all call paths? DM to discuss a security review.",
+                "evidence_ids": [
+                  "kb:tx-origin:description",
+                  "kb:tx-origin:fact:mechanism",
+                  "kb:tx-origin:fact:distinction",
+                  "kb:tx-origin:fact:review"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_3",
+      "status": "shipped",
+      "drafts": [
+        {
+          "attempt": 1,
+          "draft": {
+            "posts": [
+              {
+                "text": "Can a loop over growing on-chain data exceed the gas limit? Unbounded iteration can grow work without bound, eventually stalling the contract. DM to discuss a security review.",
+                "evidence_ids": [
+                  "kb:unbounded-loop:fact:mechanism",
+                  "kb:unbounded-loop:fact:impact",
+                  "kb:unbounded-loop:root_cause",
+                  "kb:unbounded-loop:description"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "reasons": []
+    }
+  ]
+}

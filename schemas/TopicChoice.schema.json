@@ -1,0 +1,19 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kb_id": {
+      "title": "Kb Id",
+      "type": "string"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kb_id",
+    "reason"
+  ],
+  "title": "TopicChoice",
+  "type": "object"
+}

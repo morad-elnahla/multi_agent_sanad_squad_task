@@ -1,0 +1,7 @@
+{
+  "name": "marketing",
+  "min_posts": 1,
+  "max_posts": 1,
+  "max_characters": 280,
+  "writer": "writer.md"
+}

@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "thread_3",
+      "type": "tech-thread",
+      "focus": "access control"
+    },
+    "candidates": [
+      {
+        "id": "access-control",
+        "name": "Missing access control",
+        "severity": "Critical",
+        "category": "Authorization",
+        "description": "A sensitive function without adequate authorization can be called by an unintended account.",
+        "root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+        "mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation.",
+        "source_url": "https://scs.owasp.org/SCWE/",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context."
+      }
+    ],
+    "topic": "Missing access control",
+    "research": {
+      "kb_id": "access-control",
+      "source": "kb:access-control",
+      "background_url": "https://scs.owasp.org/SCWE/",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "Deterministic first unused matching KB entry",
+      "evidence": {
+        "kb:access-control:name": "Missing access control",
+        "kb:access-control:description": "A sensitive function without adequate authorization can be called by an unintended account.",
+        "kb:access-control:root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+        "kb:access-control:mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation."
+      }
+    },
+    "evidence": {
+      "kb:access-control:name": "Missing access control",
+      "kb:access-control:description": "A sensitive function without adequate authorization can be called by an unintended account.",
+      "kb:access-control:root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+      "kb:access-control:mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "1/5 Missing access control",
+          "evidence_ids": [
+            "kb:access-control:name"
+          ]
+        },
+        {
+          "text": "2/5 A sensitive function without adequate authorization can be called by an unintended account.",
+          "evidence_ids": [
+            "kb:access-control:description"
+          ]
+        },
+        {
+          "text": "3/5 Permissions are missing or applied inconsistently across privileged entry points.",
+          "evidence_ids": [
+            "kb:access-control:root_cause"
+          ]
+        },
+        {
+          "text": "4/5 Define roles explicitly and test unauthorized calls for every privileged operation.",
+          "evidence_ids": [
+            "kb:access-control:mitigation"
+          ]
+        },
+        {
+          "text": "5/5 Which test would show that this assumption still holds across every entry point?",
+          "evidence_ids": []
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "1/5 Missing access control",
+              "evidence_ids": [
+                "kb:access-control:name"
+              ]
+            },
+            {
+              "text": "2/5 A sensitive function without adequate authorization can be called by an unintended account.",
+              "evidence_ids": [
+                "kb:access-control:description"
+              ]
+            },
+            {
+              "text": "3/5 Permissions are missing or applied inconsistently across privileged entry points.",
+              "evidence_ids": [
+                "kb:access-control:root_cause"
+              ]
+            },
+            {
+              "text": "4/5 Define roles explicitly and test unauthorized calls for every privileged operation.",
+              "evidence_ids": [
+                "kb:access-control:mitigation"
+              ]
+            },
+            {
+              "text": "5/5 Which test would show that this assumption still holds across every entry point?",
+              "evidence_ids": []
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": true,
+        "scores": {
+          "accuracy": 4,
+          "usefulness": 4,
+          "clarity": 4,
+          "brand_fit": 4
+        },
+        "total": 16,
+        "reasons": [],
+        "hard_errors": [],
+        "judgment": {
+          "approve": true,
+          "scores": {
+            "accuracy": 4,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 1,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 2,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 3,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 4,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            }
+          ],
+          "reasons": [
+            "Fixed demo scores; not an independent LLM quality assessment"
+          ]
+        },
+        "attempt": 1
+      }
+    ],
+    "attempt": 1,
+    "accepted": true,
+    "status": "shipped",
+    "reasons": [],
+    "visual": {
+      "prompt": "Conceptual editorial illustration about Missing access control. Navy background, teal and amber forms, 16:9. One interrupted flow between abstract contract blocks. No text or logos.",
+      "alt_text": "Conceptual illustration for a discussion of Missing access control."
+    },
+    "visual_path": "visuals/thread_3.json"
+  }
+}

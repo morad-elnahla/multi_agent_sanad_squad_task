@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "kind": "research_log",
+  "data": [
+    {
+      "slot_id": "thread_1",
+      "status": "shipped",
+      "research": {
+        "kb_id": "reentrancy",
+        "source": "kb:reentrancy",
+        "background_url": "https://scs.owasp.org/SCWE/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Deterministic first unused matching KB entry",
+        "evidence": {
+          "kb:reentrancy:name": "Reentrancy",
+          "kb:reentrancy:description": "An external call can let another contract re-enter before the caller has finished updating its state.",
+          "kb:reentrancy:root_cause": "An invariant is temporarily broken across an external call.",
+          "kb:reentrancy:mitigation": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too."
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "thread_2",
+      "status": "shipped",
+      "research": {
+        "kb_id": "unchecked-return",
+        "source": "kb:unchecked-return",
+        "background_url": "https://scs.owasp.org/SCWE/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Deterministic first unused matching KB entry",
+        "evidence": {
+          "kb:unchecked-return:name": "Unchecked external call result",
+          "kb:unchecked-return:description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+          "kb:unchecked-return:root_cause": "The caller does not check the success flag returned by a low-level call.",
+          "kb:unchecked-return:mitigation": "Check call outcomes and define explicit failure handling."
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "thread_3",
+      "status": "shipped",
+      "research": {
+        "kb_id": "access-control",
+        "source": "kb:access-control",
+        "background_url": "https://scs.owasp.org/SCWE/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Deterministic first unused matching KB entry",
+        "evidence": {
+          "kb:access-control:name": "Missing access control",
+          "kb:access-control:description": "A sensitive function without adequate authorization can be called by an unintended account.",
+          "kb:access-control:root_cause": "Permissions are missing or applied inconsistently across privileged entry points.",
+          "kb:access-control:mitigation": "Define roles explicitly and test unauthorized calls for every privileged operation."
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_1",
+      "status": "shipped",
+      "research": {
+        "kb_id": "oracle-manipulation",
+        "source": "kb:oracle-manipulation",
+        "background_url": "https://scs.owasp.org/SCWE/SCSVS-ORACLE/SCWE-028/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Deterministic first unused matching KB entry",
+        "evidence": {
+          "kb:oracle-manipulation:name": "Oracle manipulation",
+          "kb:oracle-manipulation:description": "A manipulable price input can distort collateral valuation or other price-dependent decisions.",
+          "kb:oracle-manipulation:root_cause": "Contract logic trusts a price without adequate manipulation resistance.",
+          "kb:oracle-manipulation:mitigation": "Assess feed design, liquidity assumptions, freshness checks and fallback behavior together."
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_2",
+      "status": "shipped",
+      "research": {
+        "kb_id": "tx-origin",
+        "source": "kb:tx-origin",
+        "background_url": "https://scs.owasp.org/SCWE/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Deterministic first unused matching KB entry",
+        "evidence": {
+          "kb:tx-origin:name": "tx.origin authorization",
+          "kb:tx-origin:description": "Authorization based on tx.origin can be abused through a malicious intermediary contract.",
+          "kb:tx-origin:root_cause": "Authorization checks the transaction origin instead of the intended caller identity.",
+          "kb:tx-origin:mitigation": "Use an appropriate caller-based authorization design and test intermediary call paths."
+        }
+      },
+      "reasons": []
+    },
+    {
+      "slot_id": "marketing_3",
+      "status": "shipped",
+      "research": {
+        "kb_id": "unbounded-loop",
+        "source": "kb:unbounded-loop",
+        "background_url": "https://scs.owasp.org/SCWE/",
+        "source_mode": "local curated KB, not a live URL fetch",
+        "reason": "Deterministic first unused matching KB entry",
+        "evidence": {
+          "kb:unbounded-loop:name": "Unbounded iteration",
+          "kb:unbounded-loop:description": "A loop over growing on-chain data can eventually exceed the transaction gas limit.",
+          "kb:unbounded-loop:root_cause": "The required work grows without a practical bound.",
+          "kb:unbounded-loop:mitigation": "Bound work per transaction or use a carefully designed batching approach."
+        }
+      },
+      "reasons": []
+    }
+  ]
+}

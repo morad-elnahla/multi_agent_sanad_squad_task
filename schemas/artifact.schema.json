@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunArtifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "data"
+  ],
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "plan",
+        "input_snapshot",
+        "resolved_plan",
+        "research_log",
+        "drafts",
+        "review_report",
+        "final_content",
+        "run_summary",
+        "usage",
+        "events",
+        "piece_state",
+        "image_spec"
+      ]
+    },
+    "data": {
+      "type": [
+        "object",
+        "array"
+      ]
+    }
+  }
+}

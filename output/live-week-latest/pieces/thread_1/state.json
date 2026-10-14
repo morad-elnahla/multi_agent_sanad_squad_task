@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.1",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "thread_1",
+      "type": "tech-thread",
+      "focus": "reentrancy"
+    },
+    "candidates": [
+      {
+        "id": "reentrancy",
+        "name": "Reentrancy",
+        "severity": "High",
+        "category": "External calls",
+        "description": "An external call can let another contract re-enter before the caller has finished updating its state.",
+        "root_cause": "An invariant is temporarily broken across an external call.",
+        "mitigation": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too.",
+        "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context.",
+        "facts": [
+          {
+            "id": "mechanism",
+            "text": "A contract interaction transfers control to the called contract, which may call back.",
+            "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+          },
+          {
+            "id": "scope",
+            "text": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths.",
+            "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+          },
+          {
+            "id": "pattern",
+            "text": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions.",
+            "source_url": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+          }
+        ]
+      }
+    ],
+    "topic": "Reentrancy",
+    "research": {
+      "kb_id": "reentrancy",
+      "source": "kb:reentrancy",
+      "background_url": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "The candidate directly matches the requested focus on reentrancy and includes detailed description, root cause, mitigation, and supporting facts relevant to the topic.",
+      "evidence": {
+        "kb:reentrancy:name": "Reentrancy",
+        "kb:reentrancy:description": "An external call can let another contract re-enter before the caller has finished updating its state.",
+        "kb:reentrancy:root_cause": "An invariant is temporarily broken across an external call.",
+        "kb:reentrancy:mitigation": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too.",
+        "kb:reentrancy:fact:mechanism": "A contract interaction transfers control to the called contract, which may call back.",
+        "kb:reentrancy:fact:scope": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths.",
+        "kb:reentrancy:fact:pattern": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions."
+      },
+      "provenance": {
+        "kb:reentrancy:name": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:reentrancy:description": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:reentrancy:root_cause": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:reentrancy:mitigation": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:reentrancy:fact:mechanism": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:reentrancy:fact:scope": "https://docs.soliditylang.org/en/latest/security-considerations.html",
+        "kb:reentrancy:fact:pattern": "https://docs.soliditylang.org/en/latest/security-considerations.html"
+      }
+    },
+    "evidence": {
+      "kb:reentrancy:name": "Reentrancy",
+      "kb:reentrancy:description": "An external call can let another contract re-enter before the caller has finished updating its state.",
+      "kb:reentrancy:root_cause": "An invariant is temporarily broken across an external call.",
+      "kb:reentrancy:mitigation": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too.",
+      "kb:reentrancy:fact:mechanism": "A contract interaction transfers control to the called contract, which may call back.",
+      "kb:reentrancy:fact:scope": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths.",
+      "kb:reentrancy:fact:pattern": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "Reentrancy lets an attacker slip back into a contract before its state finishes updating.",
+          "evidence_ids": [
+            "kb:reentrancy:description"
+          ]
+        },
+        {
+          "text": "An external call transfers control to the called contract, which may call back into the original function.",
+          "evidence_ids": [
+            "kb:reentrancy:fact:mechanism"
+          ]
+        },
+        {
+          "text": "Reentrancy is not limited to Ether transfers; any call to another contract can create a re-entry path.",
+          "evidence_ids": [
+            "kb:reentrancy:fact:scope"
+          ]
+        },
+        {
+          "text": "Mitigate by updating state before external calls and, if needed, adding a reentrancy guard; also examine cross-function paths.",
+          "evidence_ids": [
+            "kb:reentrancy:mitigation",
+            "kb:reentrancy:fact:pattern"
+          ]
+        },
+        {
+          "text": "Can you verify that every external interaction in your code follows the checks-effects-interactions order?",
+          "evidence_ids": [
+            "kb:reentrancy:fact:pattern"
+          ]
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "Reentrancy lets an attacker slip back into a contract before its state finishes updating.",
+              "evidence_ids": [
+                "kb:reentrancy:description"
+              ]
+            },
+            {
+              "text": "An external call transfers control to the called contract, which may call back into the original function.",
+              "evidence_ids": [
+                "kb:reentrancy:fact:mechanism"
+              ]
+            },
+            {
+              "text": "Reentrancy is not limited to Ether transfers; any call to another contract can create a re-entry path.",
+              "evidence_ids": [
+                "kb:reentrancy:fact:scope"
+              ]
+            },
+            {
+              "text": "Mitigate by updating state before external calls and, if needed, adding a reentrancy guard; also examine cross-function paths.",
+              "evidence_ids": [
+                "kb:reentrancy:mitigation",
+                "kb:reentrancy:fact:pattern"
+              ]
+            },
+            {
+              "text": "Can you verify that every external interaction in your code follows the checks-effects-interactions order?",
+              "evidence_ids": [
+                "kb:reentrancy:fact:pattern"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": true,
+        "scores": {
+          "accuracy": 4,
+          "usefulness": 4,
+          "clarity": 4,
+          "brand_fit": 4
+        },
+        "total": 16,
+        "reasons": [],
+        "hard_errors": [],
+        "judgment": {
+          "approve": true,
+          "scores": {
+            "accuracy": 4,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "claims": [
+            {
+              "unit_id": "p1s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:reentrancy:description",
+                  "quote": "An external call can let another contract re-enter before the caller has finished updating its state."
+                }
+              ],
+              "reason": "The statement matches the description of re‑entrancy."
+            },
+            {
+              "unit_id": "p2s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:reentrancy:fact:mechanism",
+                  "quote": "A contract interaction transfers control to the called contract, which may call back."
+                }
+              ],
+              "reason": "The mechanism description directly supports the claim."
+            },
+            {
+              "unit_id": "p3s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:reentrancy:fact:scope",
+                  "quote": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths."
+                }
+              ],
+              "reason": "Scope statement is verbatim from the source."
+            },
+            {
+              "unit_id": "p3s2",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:reentrancy:fact:scope",
+                  "quote": "Reentrancy is not limited to Ether transfers; calls to other contracts can also create re-entry paths."
+                }
+              ],
+              "reason": "The claim mirrors the source wording."
+            },
+            {
+              "unit_id": "p4s1",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:reentrancy:mitigation",
+                  "quote": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too."
+                }
+              ],
+              "reason": "Mitigation advice is directly taken from the source."
+            },
+            {
+              "unit_id": "p4s2",
+              "kind": "factual",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:reentrancy:mitigation",
+                  "quote": "Update state before external calls and consider a reentrancy guard; examine cross-function paths too."
+                }
+              ],
+              "reason": "Cross‑function path suggestion matches the source."
+            },
+            {
+              "unit_id": "p5s1",
+              "kind": "question",
+              "supported": true,
+              "citations": [
+                {
+                  "evidence_id": "kb:reentrancy:fact:pattern",
+                  "quote": "The checks-effects-interactions pattern performs checks, then state changes, then external interactions."
+                }
+              ],
+              "reason": "The question asks to apply a pattern that the source defines."
+            }
+          ],
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "All statements in post 1 are backed by evidence."
+            },
+            {
+              "post_index": 1,
+              "supported": true,
+              "reason": "Post 2 content is fully supported."
+            },
+            {
+              "post_index": 2,
+              "supported": true,
+              "reason": "Both sentences in post 3 are supported by the scope source."
+            },
+            {
+              "post_index": 3,
+              "supported": true,
+              "reason": "Mitigation guidance in post 4 matches the mitigation source."
+            },
+            {
+              "post_index": 4,
+              "supported": true,
+              "reason": "The review question in post 5 aligns with the pattern source."
+            }
+          ],
+          "reasons": [
+            "Meets brand guidelines: calm, precise, short sentences, no banned language."
+          ]
+        },
+        "scope_warnings": [
+          {
+            "unit_id": "p3s2",
+            "marker": "any",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          },
+          {
+            "unit_id": "p5s1",
+            "marker": "every",
+            "message": "Assess meaning in context; word absence is not a rejection reason."
+          }
+        ],
+        "attempt": 1
+      }
+    ],
+    "attempt": 1,
+    "accepted": true,
+    "status": "shipped",
+    "reasons": [],
+    "visual": {
+      "prompt": "Editorial 16:9 illustration, dark navy background, restrained teal and amber accents, generous negative space. Use conceptual shapes, not a literal execution trace. Conceptual topic: Reentrancy. A segmented circular path surrounding an abstract block. One curved return path provides the focal point. No visible text, lettering, labels, numbers, logos, code or screenshots. Do not depict a guaranteed fix.",
+      "alt_text": "Conceptual illustration about Reentrancy: A segmented circular path surrounding an abstract block. One curved return path provides the focal point.",
+      "artifact_type": "written_image_spec",
+      "width": 1600,
+      "height": 900,
+      "source_ids": [
+        "kb:reentrancy:fact:mechanism"
+      ],
+      "concept": {
+        "source_id": "kb:reentrancy:fact:mechanism",
+        "layout": "cycle",
+        "symbol": "loop"
+      },
+      "checks": {
+        "valid_source": true,
+        "approved_layout": true,
+        "approved_symbol": true,
+        "text_overlays": false
+      },
+      "evidence_context": "A contract interaction transfers control to the called contract, which may call back."
+    },
+    "visual_path": "visuals/thread_1.json"
+  }
+}

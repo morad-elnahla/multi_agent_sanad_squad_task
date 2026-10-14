@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "kind": "final_content",
+  "data": [
+    {
+      "slot_id": "thread_1",
+      "type": "tech-thread",
+      "topic": "Reentrancy",
+      "posts": [
+        {
+          "text": "1/5 Reentrancy",
+          "evidence_ids": [
+            "kb:reentrancy:name"
+          ]
+        },
+        {
+          "text": "2/5 An external call can let another contract re-enter before the caller has finished updating its state.",
+          "evidence_ids": [
+            "kb:reentrancy:description"
+          ]
+        },
+        {
+          "text": "3/5 An invariant is temporarily broken across an external call.",
+          "evidence_ids": [
+            "kb:reentrancy:root_cause"
+          ]
+        },
+        {
+          "text": "4/5 Update state before external calls and consider a reentrancy guard; examine cross-function paths too.",
+          "evidence_ids": [
+            "kb:reentrancy:mitigation"
+          ]
+        },
+        {
+          "text": "5/5 Which test would show that this assumption still holds across every entry point?",
+          "evidence_ids": []
+        }
+      ],
+      "image_spec": "visuals/thread_1.json"
+    },
+    {
+      "slot_id": "thread_2",
+      "type": "tech-thread",
+      "topic": "Unchecked external call result",
+      "posts": [
+        {
+          "text": "1/5 Unchecked external call result",
+          "evidence_ids": [
+            "kb:unchecked-return:name"
+          ]
+        },
+        {
+          "text": "2/5 Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+          "evidence_ids": [
+            "kb:unchecked-return:description"
+          ]
+        },
+        {
+          "text": "3/5 The caller does not check the success flag returned by a low-level call.",
+          "evidence_ids": [
+            "kb:unchecked-return:root_cause"
+          ]
+        },
+        {
+          "text": "4/5 Check call outcomes and define explicit failure handling.",
+          "evidence_ids": [
+            "kb:unchecked-return:mitigation"
+          ]
+        },
+        {
+          "text": "5/5 Which test would show that this assumption still holds across every entry point?",
+          "evidence_ids": []
+        }
+      ],
+      "image_spec": "visuals/thread_2.json"
+    },
+    {
+      "slot_id": "thread_3",
+      "type": "tech-thread",
+      "topic": "Missing access control",
+      "posts": [
+        {
+          "text": "1/5 Missing access control",
+          "evidence_ids": [
+            "kb:access-control:name"
+          ]
+        },
+        {
+          "text": "2/5 A sensitive function without adequate authorization can be called by an unintended account.",
+          "evidence_ids": [
+            "kb:access-control:description"
+          ]
+        },
+        {
+          "text": "3/5 Permissions are missing or applied inconsistently across privileged entry points.",
+          "evidence_ids": [
+            "kb:access-control:root_cause"
+          ]
+        },
+        {
+          "text": "4/5 Define roles explicitly and test unauthorized calls for every privileged operation.",
+          "evidence_ids": [
+            "kb:access-control:mitigation"
+          ]
+        },
+        {
+          "text": "5/5 Which test would show that this assumption still holds across every entry point?",
+          "evidence_ids": []
+        }
+      ],
+      "image_spec": "visuals/thread_3.json"
+    },
+    {
+      "slot_id": "marketing_1",
+      "type": "marketing",
+      "topic": "Oracle manipulation",
+      "posts": [
+        {
+          "text": "A manipulable price input can distort collateral valuation or other price-dependent decisions. What assumptions would you want challenged in a security review?",
+          "evidence_ids": [
+            "kb:oracle-manipulation:description"
+          ]
+        }
+      ],
+      "image_spec": "visuals/marketing_1.json"
+    },
+    {
+      "slot_id": "marketing_2",
+      "type": "marketing",
+      "topic": "tx.origin authorization",
+      "posts": [
+        {
+          "text": "Authorization based on tx.origin can be abused through a malicious intermediary contract. What assumptions would you want challenged in a security review?",
+          "evidence_ids": [
+            "kb:tx-origin:description"
+          ]
+        }
+      ],
+      "image_spec": "visuals/marketing_2.json"
+    },
+    {
+      "slot_id": "marketing_3",
+      "type": "marketing",
+      "topic": "Unbounded iteration",
+      "posts": [
+        {
+          "text": "A loop over growing on-chain data can eventually exceed the transaction gas limit. What assumptions would you want challenged in a security review?",
+          "evidence_ids": [
+            "kb:unbounded-loop:description"
+          ]
+        }
+      ],
+      "image_spec": "visuals/marketing_3.json"
+    }
+  ]
+}

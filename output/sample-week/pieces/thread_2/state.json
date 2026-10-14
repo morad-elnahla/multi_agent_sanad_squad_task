@@ -1,0 +1,176 @@
+{
+  "schema_version": "1.0",
+  "kind": "piece_state",
+  "data": {
+    "slot": {
+      "id": "thread_2",
+      "type": "tech-thread",
+      "focus": ""
+    },
+    "candidates": [
+      {
+        "id": "unchecked-return",
+        "name": "Unchecked external call result",
+        "severity": "Medium",
+        "category": "External calls",
+        "description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+        "root_cause": "The caller does not check the success flag returned by a low-level call.",
+        "mitigation": "Check call outcomes and define explicit failure handling.",
+        "source_url": "https://scs.owasp.org/SCWE/",
+        "severity_note": "Illustrative test-data rating; actual severity depends on impact and context."
+      }
+    ],
+    "topic": "Unchecked external call result",
+    "research": {
+      "kb_id": "unchecked-return",
+      "source": "kb:unchecked-return",
+      "background_url": "https://scs.owasp.org/SCWE/",
+      "source_mode": "local curated KB, not a live URL fetch",
+      "reason": "Deterministic first unused matching KB entry",
+      "evidence": {
+        "kb:unchecked-return:name": "Unchecked external call result",
+        "kb:unchecked-return:description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+        "kb:unchecked-return:root_cause": "The caller does not check the success flag returned by a low-level call.",
+        "kb:unchecked-return:mitigation": "Check call outcomes and define explicit failure handling."
+      }
+    },
+    "evidence": {
+      "kb:unchecked-return:name": "Unchecked external call result",
+      "kb:unchecked-return:description": "Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+      "kb:unchecked-return:root_cause": "The caller does not check the success flag returned by a low-level call.",
+      "kb:unchecked-return:mitigation": "Check call outcomes and define explicit failure handling."
+    },
+    "draft": {
+      "posts": [
+        {
+          "text": "1/5 Unchecked external call result",
+          "evidence_ids": [
+            "kb:unchecked-return:name"
+          ]
+        },
+        {
+          "text": "2/5 Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+          "evidence_ids": [
+            "kb:unchecked-return:description"
+          ]
+        },
+        {
+          "text": "3/5 The caller does not check the success flag returned by a low-level call.",
+          "evidence_ids": [
+            "kb:unchecked-return:root_cause"
+          ]
+        },
+        {
+          "text": "4/5 Check call outcomes and define explicit failure handling.",
+          "evidence_ids": [
+            "kb:unchecked-return:mitigation"
+          ]
+        },
+        {
+          "text": "5/5 Which test would show that this assumption still holds across every entry point?",
+          "evidence_ids": []
+        }
+      ]
+    },
+    "drafts": [
+      {
+        "attempt": 1,
+        "draft": {
+          "posts": [
+            {
+              "text": "1/5 Unchecked external call result",
+              "evidence_ids": [
+                "kb:unchecked-return:name"
+              ]
+            },
+            {
+              "text": "2/5 Ignoring a failed low-level call can leave the contract proceeding as if an operation succeeded.",
+              "evidence_ids": [
+                "kb:unchecked-return:description"
+              ]
+            },
+            {
+              "text": "3/5 The caller does not check the success flag returned by a low-level call.",
+              "evidence_ids": [
+                "kb:unchecked-return:root_cause"
+              ]
+            },
+            {
+              "text": "4/5 Check call outcomes and define explicit failure handling.",
+              "evidence_ids": [
+                "kb:unchecked-return:mitigation"
+              ]
+            },
+            {
+              "text": "5/5 Which test would show that this assumption still holds across every entry point?",
+              "evidence_ids": []
+            }
+          ]
+        }
+      }
+    ],
+    "reviews": [
+      {
+        "accepted": true,
+        "scores": {
+          "accuracy": 4,
+          "usefulness": 4,
+          "clarity": 4,
+          "brand_fit": 4
+        },
+        "total": 16,
+        "reasons": [],
+        "hard_errors": [],
+        "judgment": {
+          "approve": true,
+          "scores": {
+            "accuracy": 4,
+            "usefulness": 4,
+            "clarity": 4,
+            "brand_fit": 4
+          },
+          "support": [
+            {
+              "post_index": 0,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 1,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 2,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 3,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            },
+            {
+              "post_index": 4,
+              "supported": true,
+              "reason": "Exact extractive fixture check"
+            }
+          ],
+          "reasons": [
+            "Fixed demo scores; not an independent LLM quality assessment"
+          ]
+        },
+        "attempt": 1
+      }
+    ],
+    "attempt": 1,
+    "accepted": true,
+    "status": "shipped",
+    "reasons": [],
+    "visual": {
+      "prompt": "Conceptual editorial illustration about Unchecked external call result. Navy background, teal and amber forms, 16:9. One interrupted flow between abstract contract blocks. No text or logos.",
+      "alt_text": "Conceptual illustration for a discussion of Unchecked external call result."
+    },
+    "visual_path": "visuals/thread_2.json"
+  }
+}

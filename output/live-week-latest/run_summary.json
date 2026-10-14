@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.1",
+  "kind": "run_summary",
+  "data": {
+    "started_at": "2026-10-13T17:50:03.955990+00:00",
+    "finished_at": "2026-10-13T18:11:43.327330+00:00",
+    "mode": "live",
+    "demo_notice": null,
+    "pieces_requested": 6,
+    "pieces_shipped": 5,
+    "pieces_dropped": 1,
+    "dropped": [
+      {
+        "slot_id": "thread_2",
+        "status": "dropped",
+        "reasons": [
+          "Post 2: non-ASCII text is outside supported X policy",
+          "Post 3: non-ASCII text is outside supported X policy",
+          "p4s1: Partially supported; the claim that it corrupts state is not present in evidence, making the overall statement unsupported.",
+          "Post 2 contains non-ASCII characters violating ASCII‑only policy.",
+          "Post 3 contains non-ASCII characters violating ASCII‑only policy.",
+          "Post 4 includes an unsupported claim about state corruption not supported by evidence.",
+          "Post 2: Contains non-ASCII hyphen character violating ASCII-only policy.",
+          "Post 3: Contains non-ASCII hyphen character violating ASCII-only policy.",
+          "Post 4: Includes an unsupported claim about state corruption not backed by evidence."
+        ]
+      }
+    ],
+    "usage": {
+      "model": "openai/gpt-oss-120b",
+      "calls": 27,
+      "rate_limit_responses": 0,
+      "provider_settings": {
+        "tokens_per_minute": 7500,
+        "max_completion_tokens": 4096,
+        "rate_limit_retries": 3,
+        "max_retry_wait_seconds": 300.0,
+        "retry_base_seconds": 61.0
+      },
+      "input_tokens_recorded": 40159,
+      "output_tokens_recorded": 27352,
+      "token_totals_complete": true,
+      "cost_usd": 0.0,
+      "cost_status": "estimated at configured token rates",
+      "rates_usd_per_million": {
+        "input": 0.0,
+        "output": 0.0
+      }
+    },
+    "export_contract": "One row per piece; blank-line-separated thread; Image is a local spec path, not rendered media."
+  }
+}
