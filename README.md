@@ -1,143 +1,295 @@
-# SanadSquad Content Pipeline
+<div align="center">
 
-A small, file-configured LangGraph system for one week of grounded X content.
-It researches six slots, selects the appropriate writer, reviews each piece,
-allows **one editorial retry**, creates an image specification only after
-acceptance, and exports `posts.csv` with a complete JSON audit trail.
+<br>
 
-## Start with the interface
+![SanadSquad Content Studio](https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=32&pause=1200&color=176B52&center=true&vCenter=true&width=850&lines=SanadSquad+Content+Studio;One+Plan.+Specialised+Agents.;Research.+Write.+Review.+Export.)
 
-On Windows, unzip into a new folder, copy your existing `.env` into that folder,
-and double-click **`launch_ui.bat`**. Python 3.11+ must already be installed.
-The launcher installs dependencies if needed and opens the local Streamlit app.
-Keep the launcher window open while using it. No terminal commands are needed
-for normal runs after setup.
+<br>
 
-Alternatively, after installing dependencies:
+![Python](https://img.shields.io/badge/Python-3.11%2B-176B52?style=for-the-badge&logo=python&logoColor=white&labelColor=172B29)
+![LangGraph](https://img.shields.io/badge/LangGraph-Orchestration-176B52?style=for-the-badge&labelColor=172B29)
+![LangChain](https://img.shields.io/badge/LangChain-Structured_Output-176B52?style=for-the-badge&labelColor=172B29)
+![Streamlit](https://img.shields.io/badge/Streamlit-Content_Studio-176B52?style=for-the-badge&logo=streamlit&logoColor=white&labelColor=172B29)
+![Groq](https://img.shields.io/badge/Groq-Live_Run_Tested-176B52?style=for-the-badge&labelColor=172B29)
+
+### Your expertise. A week of content.
+
+**A multi-agent system that turns smart contract security knowledge into reviewed X threads and marketing posts.**
+
+Research with sources. Write in the brand's voice. Review before export.
+
+[Quick Start](#quick-start) · [Architecture](ARCHITECTURE.md) · [Live Sample](output/live-week-latest) · [Known Limitations](LIMITATIONS.md)
+
+</div>
+
+---
+
+## ✦ App Preview
+
+<p align="center">
+  <img src="photo/1.png" width="100%" alt="SanadSquad Content Studio — Streamlit workspace">
+</p>
+
+A local workspace to edit the weekly plan, follow agent activity, inspect posts and evidence, and download the accepted content. **Nothing is published automatically.**
+
+---
+
+## ✦ What Is This?
+
+Preparing useful security content takes more than generating text. Topics need sources, technical claims need checking, and every post needs to follow the brand's rules.
+
+**SanadSquad Content Studio** splits that work between specialised agents. The default plan contains **three technical threads and three marketing posts**. A thread contains **5–10 tweets**. You can set each topic or leave it blank for automatic selection from the knowledge base.
+
+A rejected piece gets **one rewrite with feedback**. If it fails again, it is dropped. Only accepted pieces receive a visual specification and appear in the final CSV.
+
+| Orchestration | Model adapter | Knowledge | Interface | Export |
+|:---:|:---:|:---:|:---:|:---:|
+| LangGraph + asyncio | LangChain / OpenAI-compatible API | 15 curated vulnerabilities | Streamlit + CLI | CSV + JSON audit trail |
+
+---
+
+## ✦ Meet the Agents
+
+| Role | Responsibility | Handoff |
+|:---|:---|:---|
+| **Orchestrator** | Apply the plan, schedule independent slots in parallel, collect results | Isolated slot workflows |
+| **Research agent** | Resolve topics from the KB and record their provenance | Topic, evidence IDs and source text |
+| **Technical writer** | Explain a vulnerability in a connected 5–10 tweet thread | Draft with evidence references |
+| **Marketing writer** | Write a concise, brand-aligned marketing post | Draft with evidence references |
+| **Reviewer** | Score accuracy, usefulness, clarity and brand fit; check support | Accept/reject decision and feedback |
+| **Visual agent** | Choose a supported visual concept for accepted content | Written image specification |
+
+The writers have separate instruction files. Reusable skills live in `pipeline/skills/`; evidence lookup is shared by research and review, and the image brief is shared by writers and the visual agent.
+
+---
+
+## ✦ How It Works
+
+```mermaid
+flowchart TD
+    A[Weekly plan and overrides] --> B[Orchestrator]
+    B --> C[Research each slot]
+    K[Curated knowledge base] --> C
+    C --> D[Technical or marketing writer]
+    D --> E[Code checks and model review]
+    E -->|First rejection: feedback| D
+    E -->|Second rejection| F[Drop with reasons]
+    E -->|Accepted| G[Visual specification]
+    G --> H[CSV and audit artifacts]
+    F --> H
+    C -->|Source failure| I[Fail slot and continue]
+    I --> H
+```
+
+Slots run independently with bounded concurrency. A failure in one does not stop the others. A shared local token budget can pace provider calls even while multiple slot workflows are active.
+
+**Automatic topic selection is not random:** empty slots reserve unused KB entries in plan order. Live wording can vary between runs; the offline demo uses deterministic fixtures.
+
+---
+
+## ✦ Quality by Design
+
+| Check | Where it belongs |
+|:---|:---|
+| Post count, character limits, banned punctuation, hashtags and links | Python validators |
+| Evidence ID validity, exact source quotes and complete review coverage | Python validators |
+| Meaning, qualifications, usefulness and brand fit | Model reviewer |
+| Approval thresholds and one editorial retry | Code, configured by files |
+| Scope words such as “always” or “any” | Advisory flags for contextual review |
+| Visual source, layout and symbol constraints | Typed output + template composition |
+
+Grounding checks reduce unsupported output; **they do not guarantee factual correctness**. The model can still miss nuance or reject valid wording. Historical drafts and decisions remain available for inspection.
+
+The KB is the runtime source. Its URLs document provenance; this version **does not fetch web pages during a run**. Severity labels are illustrative test data, not universal ratings.
+
+---
+
+## ✦ Included Live Run
+
+The complete, unmodified run is available in [`output/live-week-latest/`](output/live-week-latest).
+
+| Metric | Recorded result |
+|:---|:---|
+| Mode / model | Live / `openai/gpt-oss-120b` via Groq |
+| Requested | 6 pieces |
+| Accepted | 5: two technical threads and three marketing posts |
+| Dropped | 1 technical thread after two editorial attempts |
+| API calls | 27 |
+| Input / output tokens | 40,159 / 27,352 |
+| Recorded rate-limit responses | 0 |
+| Elapsed time | About 21 minutes 39 seconds |
+| Cost | $0 estimate at configured zero token rates; not billing verification |
+
+The dropped thread's final draft contained disallowed Unicode hyphens and an unsupported state-corruption claim. Its first review also incorrectly treated an advisory scope word as prohibited. Both decisions are preserved as evidence of the system's behavior and limitations.
+
+**A complete run does not require every piece to pass.** Rejected content stays out of the export.
+
+[`output/sample-week/`](output/sample-week) provides an offline demo. Its content and scores are fixtures, not live model evaluation.
+
+---
+
+## ✦ Project Structure
+
+```text
+sanad-content-pipeline/
+├── app.py                 # Streamlit entry point
+├── run_week.py            # Weekly CLI
+├── run_piece.py           # Single-piece CLI
+├── launch_ui.bat          # Windows launcher
+├── brand-voice.md         # Voice and machine-readable brand rules
+├── kb.json                # 15 vulnerability entries and supporting facts
+├── plan.json              # Six default content slots
+├── rubric.json            # Review thresholds
+├── visual-style.json      # Visual templates and allowed concepts
+├── pyproject.toml
+├── requirements.lock
+├── .env.example
+├── pipeline/              # Graph, orchestration, providers and UI helpers
+│   └── skills/            # Reusable research, validation and visual skills
+├── post_types/            # Type manifests and separate writer instructions
+├── prompts/               # Research, reviewer and visual instructions
+├── assets/                # Local UI stylesheet
+├── .streamlit/            # Local server and theme configuration
+├── schemas/               # JSON Schema contracts
+├── scripts/               # Schema export utility
+├── tests/                 # Automated tests and regression fixtures
+├── docs/                  # UI guide, artifact contract and test report
+├── photo/1.png            # Interface screenshot
+└── output/                # Complete sample runs
+```
+
+---
+
+<a id="quick-start"></a>
+
+## ✦ Quick Start
+
+**Python 3.11+** is required. Clone or download this repository, then open a terminal in its root folder.
+
+### 1. Install
+
+```bash
+python -m venv .venv
+```
+
+Activate on **Windows PowerShell**:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Or on **Linux / macOS**:
+
+```bash
+source .venv/bin/activate
+```
+
+Install the tested dependency set:
+
+```bash
+python -m pip install -r requirements.lock
+```
+
+### 2. Open the studio
 
 ```bash
 python -m streamlit run app.py
 ```
 
-1. Choose **Demo** (offline) or **Live** in the sidebar.
-2. For Live, choose the provider/model and use your existing `.env` key or the
-   masked API-key field. A typed key is session-only and is not saved to artifacts.
-3. Edit the weekly slots or select a single piece, then click **Run pipeline**.
-4. Watch agent stages and rate-budget waits. Open **Results & history** to inspect
-   posts, evidence, reviews, visual specs, tokens and cost, and download CSV/ZIP.
-5. **Brand & instructions** edits validated configuration for future runs.
+On Windows, you can instead double-click **`launch_ui.bat`**. It uses the local virtual environment if available and installs dependencies when its dependency check fails.
 
-Runs use unique output folders. One UI job runs at a time across browser tabs;
-its slots still run concurrently. The app binds to localhost and is intended
-for one trusted local user, not public hosting. See `docs/UI_GUIDE.md`.
+Open **http://127.0.0.1:8501**. Keep the launcher running while the app is in use.
 
-## Submission sample and interface
+### 3. Try Demo, then Live
 
-`output/live-week-latest/` is the latest **unaltered live run** from the user:
-5 accepted pieces, 1 dropped thread, 27 API calls, 67,511 recorded tokens,
-zero recorded rate-limit responses, approximately 21 minutes 39 seconds.
-The dropped thread failed after its one editorial rewrite; accepted pieces
-were exported. A completed run need not ship every requested piece.
-The zero cost is an estimate using the user's configured zero rates, not a
-billing verification. Visuals are written specifications, as permitted by the brief.
+- **Demo:** no API key; demonstrates the workflow with offline fixtures.
+- **Live:** select your provider and model; supply credentials through `.env` or the masked sidebar field.
+- **Create content:** edit slots and run a whole plan or one piece.
+- **Results & history:** search accepted posts, inspect evidence and reviews, download CSV/ZIP.
+- **Brand & instructions:** validate and save instructions for future runs.
 
-The refreshed Streamlit studio includes a plan editor, background agent progress,
-readable post previews, topic search, type filters, review history, sources and
-CSV/ZIP downloads. It uses local styling assets and makes no external font or
-image requests. It is a local application, not a public hosted service.
+Only one UI job runs at a time across browser tabs. Slots within that job can still run concurrently.
 
-`output/sample-ui-v2/` and `output/sample-week/` are offline fixtures;
-`output/groq-week-1/` is an older live run. All retain their original input snapshots.
-The latest live run validates the pipeline before the presentation-only redesign.
-The refreshed interface is tested offline; no new API calls were made for its redesign.
-See `docs/SUBMISSION.md` for the evaluation map and a short walkthrough.
+---
 
-## Setup
+## ✦ API Configuration
 
-Python 3.11 or newer. Run commands from this repository's root.
+Create `.env` beside `app.py`. For the Groq configuration used in the sample:
 
-```bash
-python -m venv .venv
-# Linux/macOS:
-source .venv/bin/activate
-# Windows PowerShell instead:
-# .\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.lock
-python -m pip install -e . --no-deps
+```dotenv
+OPENAI_API_KEY=your_groq_api_key_here
+OPENAI_BASE_URL=https://api.groq.com/openai/v1
+LLM_MODEL=openai/gpt-oss-120b
+LLM_TOKENS_PER_MINUTE=7500
+LLM_MAX_COMPLETION_TOKENS=4096
+LLM_RATE_LIMIT_RETRIES=3
 ```
 
-`requirements.lock` pins the tested dependency set. For development, install
-`python -m pip install -e '.[dev]'`. No API key is needed for the demo or tests.
+The variable is named **`OPENAI_API_KEY` even when using Groq**, because the adapter uses an OpenAI-compatible client. Use your own provider's key; no credentials are included.
+
+For OpenAI, set your OpenAI key, use `https://api.openai.com/v1`, and choose a supported structured-output model. The adapter's default model is `gpt-4.1-mini`. The UI explicitly uses the provider and model selected in its sidebar.
+
+Optional settings:
+
+| Variable | Purpose |
+|:---|:---|
+| `INPUT_USD_PER_MILLION` / `OUTPUT_USD_PER_MILLION` | Both rates for cost estimates; omit for unknown cost |
+| `LLM_TOKENS_PER_MINUTE` | Process-local budget; `0` disables local pacing |
+| `LLM_MAX_COMPLETION_TOKENS` | Completion reservation and output cap |
+| `LLM_RATE_LIMIT_RETRIES` | Bounded HTTP 429 retries, separate from editorial retries |
+| `LLM_RETRY_BASE_SECONDS` / `LLM_MAX_RETRY_WAIT_SECONDS` | Backoff controls |
+| `LLM_REASONING_EFFORT` | Optional, only for models supporting this setting |
+
+The 7,500-token budget is a **local pacing setting**, not a statement of your account's quota. It cannot account for other processes or bypass daily limits. Missing usage remains unknown; cost is an estimate at configured rates.
+
+**Keep `.env` private.** `.env.example` contains placeholders only, and run downloads exclude credentials.
+
+---
+
+## ✦ Command-Line Usage
 
 ```bash
+# Offline weekly demonstration
 python run_week.py --mode demo --plan plan.json --output output/local-demo
-python -m pytest -q
-```
 
-Output directories must be **new**. This prevents accidentally mixing runs.
-Omit `--output` to create a UTC timestamped folder automatically.
+# Live weekly plan
+python run_week.py --plan plan.json --output output/week-42 --concurrency 2
 
-## Live model run
-
-Copy `.env.example` to `.env`, set `OPENAI_API_KEY`, and choose `LLM_MODEL`.
-The default is `gpt-4.1-mini`; your account must have access and the selected
-model must support LangChain's JSON-schema structured output. The live adapter
-uses `langchain-openai`; an optional `OPENAI_BASE_URL` can target a compatible
-endpoint. The environment takes precedence over `.env`. Never commit keys.
-
-```bash
-python run_week.py --plan plan.json --output output/week-42
+# Override one slot's topic
 python run_week.py --plan plan.json --set thread_2="oracle manipulation"
+
+# Generate one technical thread
 python run_piece.py --type tech-thread --topic "reentrancy"
 ```
 
-For PowerShell or bash the quoted overrides above work as written.
-Repeat `--set` for multiple overrides. `--set thread_2=""` restores auto-selection.
-`--concurrency 3` bounds simultaneously active pieces. `--config-dir PATH`
-loads an alternate brand, KB, prompts, rubric, skills and post type registry.
-Use `--plan PATH` as well when that alternate configuration has its own plan.
+Repeat `--set` for multiple overrides. An empty focus enables automatic topic selection. Unknown topics fail visibly rather than silently substituting another subject.
 
-Set both `INPUT_USD_PER_MILLION` and `OUTPUT_USD_PER_MILLION` to rates for your
-exact model. Without rates, cost is **null/unknown**, not zero. Counts come from
-provider usage metadata, including editorial retries and failed parses where
-usage is available. Cost is an estimate at configured uncached token rates;
-cache discounts, platform fees and billing adjustments are not modeled. A
-failed request may have unknown usage. Per-call records preserve that uncertainty.
+Output folders must be new. Omit `--output` for an automatically generated folder. `--config-dir` selects an alternate configuration; use `--plan` too when that configuration has its own plan.
 
-Exit codes: **0** all shipped; **1** completed with dropped/failed slots;
-**2** invalid configuration or filesystem setup error. Partial runs still export
-accepted pieces. HTTP 429 responses receive up to three bounded transport retries, independently
-of the one editorial retry. SDK automatic retries remain disabled so each
-physical request is recorded. Other provider errors fail only that slot.
+Exit codes: **0** all shipped · **1** completed with dropped/failed pieces · **2** setup/configuration error.
 
-## Inputs and changes
+---
 
-| File | Responsibility |
-|---|---|
-| `brand-voice.md` | Tone and one machine-readable JSON block for hard rules |
-| `kb.json` | 15 curated vulnerability entries, mechanisms and mitigations |
-| `plan.json` | Ordered slots with type and optional focus |
-| `rubric.json` | Acceptance thresholds |
-| `prompts/reviewer.md` | Written scoring rubric and support checking |
-| `prompts/research.md`, `prompts/visual.md` | Role instructions |
-| `post_types/*/type.json`, `writer.md` | Post count, length and writer instructions |
-| `pipeline/skills/` | Shared source lookup, hard gates and image brief |
+## ✦ What Gets Exported?
 
-KB severity values are illustrative test-data ratings, not universal security
-judgments. The KB is the runtime source of truth; its `source_url` values are
-background reading, **not assertions that the run fetched or verified a URL**.
-No invented company statistics are approved. Review this small KB and brand
-policy before use with a real company.
+| Artifact | Purpose |
+|:---|:---|
+| `posts.csv` | Accepted content, with exactly `Post Text` and `Image` columns |
+| `final_content.json` | Accepted pieces and individual tweets with evidence IDs |
+| `input_plan.json` / `input_snapshot.json` | Effective plan and exact configuration snapshots |
+| `resolved_plan.json` / `research_log.json` | Selected topics and source evidence |
+| `drafts.json` / `review_report.json` | Draft history, scores, feedback and decisions |
+| `run_summary.json` / `usage.json` / `events.json` | Outcomes, recorded tokens, estimated cost and activity |
+| `pieces/<id>/state.json` | Diagnostic state after completed nodes |
+| `visuals/<id>.json` | Written image prompt, alt text and supporting context |
 
-Empty slots reserve different KB entries in deterministic plan order after
-explicit topics are reserved. Explicit duplicate focuses are allowed because
-they may intentionally ask for distinct angles. Unknown focuses fail visibly;
-the researcher cannot substitute an unrelated topic. This version uses the KB
-route allowed by the brief, not live web search.
+**One CSV row represents one piece.** Thread tweets are separated by blank lines inside the text cell. `Image` points to a relative JSON specification, **not rendered media**. Render the brief and adapt thread/media formatting to your scheduling tool before import. The app does not schedule or publish posts itself.
 
-### Add a post type without editing the orchestrator
+---
 
-Create `post_types/checklist/type.json`:
+## ✦ Extend Without Rewriting the Orchestrator
+
+Add a folder such as `post_types/checklist/` with a `writer.md` instruction file and a `type.json` manifest:
 
 ```json
 {
@@ -149,94 +301,65 @@ Create `post_types/checklist/type.json`:
 }
 ```
 
-Add `writer.md` in the same directory and use `"type": "checklist"` in a slot.
-The generic writer node loads those instructions and constraints automatically.
-This works for text types within the existing output schema. A genuinely new
-workflow role needs a new node and explicit graph edges; it is not magic
-configuration. See `ARCHITECTURE.md` for extension boundaries.
+Use `checklist` in the plan. The existing runner loads the new type automatically. This supports new text formats within the current schema; a genuinely new agent role or platform workflow needs explicit code.
 
-## Output contract
+Brand voice, review thresholds, prompts and visual style are separate files. See [ARCHITECTURE.md](ARCHITECTURE.md) for scaling to 15 slots and adding another platform.
 
-Every JSON artifact has `schema_version`, `kind`, and `data`. Model handoff
-schemas are in `schemas/`; the run envelope and layouts are documented in
-`docs/ARTIFACTS.md`. Each run contains:
+---
 
-```text
-input_plan.json        effective plan after CLI overrides
-input_snapshot.json    exact input/prompt contents and hashes
-resolved_plan.json     chosen topic, KB reference and status per slot
-research_log.json      source details and evidence fields
-drafts.json            all successfully parsed drafts, including retries
-review_report.json     hard errors, scores, support checks and decisions
-final_content.json     accepted content with per-post evidence references
-run_summary.json       shipped/dropped counts, reasons and total usage
-usage.json             individual agent calls, tokens and costs
-events.json            timestamped stage start/end events
-posts.csv              accepted pieces only, in original plan order
-pieces/<id>/state.json state snapshot after each completed node
-visuals/<id>.json      written image specification and alt text
-```
-
-`posts.csv` has **exactly** `Post Text,Image`. One row represents one piece; a
-thread's tweets are separated by blank lines inside its quoted CSV cell. The
-`Image` cell is a relative JSON **specification path**, not an image URL.
-This is the image-spec fallback explicitly permitted by the brief. Before
-scheduling, render these specs and map thread boundaries to the chosen scheduler.
-There is no universally portable thread import format across scheduling tools.
-`final_content.json` preserves individual tweets for a scheduler-specific adapter.
-
-## Validation and delivery
+## ✦ Tests & Documentation
 
 ```bash
 python -m pytest -q
 python scripts/export_schemas.py
 ```
 
-Tests exercise success, retries, permanent rejection, hard rules, source failures,
-provider-stage isolation, bounded parallel execution, cost uncertainty, output
-ordering and a file-only post type addition. Live provider behavior is separately
-checked with a fake LangChain response; it is not a network integration test.
-See `docs/TEST_REPORT.md` for the executed result and `LIMITATIONS.md` for next work.
+**73 tests passed in the build environment.** Coverage includes editorial retries, permanent rejection, source failures, independent slot execution, rate-limit handling, usage uncertainty, evidence checks, file-based extension and Streamlit interactions.
 
-The archive contains a local git repository. To publish to your own empty repo:
+The latest live sample predates only the UI presentation refresh. That refresh was checked with Streamlit AppTest; browser screenshot validation was unavailable in the build environment.
 
-```bash
-git remote add origin YOUR_REPOSITORY_URL
-git push -u origin main
-```
+| Document | Read it for |
+|:---|:---|
+| [Architecture](ARCHITECTURE.md) | Agent boundaries, data flow and trade-offs |
+| [UI Guide](docs/UI_GUIDE.md) | Local operation and recovery |
+| [Artifact Contract](docs/ARTIFACTS.md) | JSON layouts and schema versions |
+| [Test Report](docs/TEST_REPORT.md) | Executed checks and validation limits |
+| [Submission Guide](docs/SUBMISSION.md) | Evaluation map and demonstration walkthrough |
+| [Known Limitations](LIMITATIONS.md) | Current constraints and next work |
 
-No remote account, publishing action or API key is included.
+---
 
-## Groq free-tier protection (update)
+## ✦ Troubleshooting
 
-When `OPENAI_BASE_URL=https://api.groq.com/openai/v1`, the adapter defaults to
-a shared 7,500-token/minute local budget. It reserves approximate input plus
-up to 4,096 completion tokens and updates the budget using actual response usage.
-Budgeted API calls are serialized; slot workflows remain independent and
-concurrently scheduled. Waiting messages appear in the terminal. This local
-budget is a conservative estimate, not a guarantee against server rate limits.
+| Problem | What to do |
+|:---|:---|
+| Missing API key | Create `.env` or enter the key in the sidebar; use `OPENAI_API_KEY` for the compatible adapter |
+| “Provider budget: waiting” | Leave the run active; local pacing is waiting for budget capacity |
+| Repeated HTTP 429 responses | Check your account/model limits and other processes sharing the key |
+| A piece is dropped | Inspect both attempts in Reviews; a second rejection deliberately prevents export |
+| Topic has no source | Choose a KB topic or add a grounded entry before running |
+| Output folder already exists | Choose a new folder; past runs are protected from overwrite |
+| Missing dependency | Run `python -m pip install -r requirements.lock` in the active environment |
 
-On HTTP 429, it honors `Retry-After` when available, otherwise waits 61 seconds
-and uses exponential backoff with a little jitter. Up to three retries are
-logged separately from editorial attempts. A requested wait beyond 300 seconds
-or explicit insufficient-quota error fails visibly instead of looping forever.
-No daily quota is bypassed. Other processes using the same account are not part
-of this process-local budget.
+---
 
-Environment overrides: `LLM_TOKENS_PER_MINUTE`, `LLM_MAX_COMPLETION_TOKENS`,
-`LLM_RATE_LIMIT_RETRIES`, `LLM_RETRY_BASE_SECONDS`, `LLM_MAX_RETRY_WAIT_SECONDS`.
-Set `LLM_REASONING_EFFORT=low` optionally for GPT-OSS to reduce reasoning work;
-leave it unset for models that do not support this option. Shorter writer
-instructions target 140–220 characters while the hard 280-character gate remains.
+## ✦ Known Limits & Next Steps
 
-The rate-limit tests use simulated responses and a fake clock. The bundled historical
-live run demonstrates the prior provider update, not the new UI or claim audit.
+- Model review remains fallible; broaden human-labelled evaluations and improve repair consistency.
+- Retrieval uses the local KB; add verified web retrieval with saved source snapshots.
+- Visuals are specifications; add an image provider and media validation.
+- Execution is process-local and not resumable after server shutdown; add durable jobs and shared budgets.
+- X formatting uses a conservative ASCII policy; add weighted Unicode length handling.
+- CSV needs scheduler-specific adaptation; add and test a dedicated scheduler exporter.
 
-## Review fix (2026-10-13)
+The studio is intended for a **trusted local user**. Public hosting would need authentication, secret isolation and durable job management.
 
-Updated lexical scope checks now generate reviewer warnings instead of automatic
-vetoes. Exact evidence quotes and all structural hard gates remain enforced.
-The reviewer accepts supported paraphrases while checking actual changes in
-certainty and meaning. The writer preserves supported sentences during repair.
-Tests include replay of the user's real dropped-thread handoffs. This change
-has not yet been validated with a new live generation.
+---
+
+<div align="center">
+
+Built by **[Morad Elnahla](https://github.com/morad-elnahla)**
+
+*SanadSquad Content Studio — plan with intent, review with evidence, export with a trail.*
+
+</div>
